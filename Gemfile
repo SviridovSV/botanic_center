@@ -20,6 +20,7 @@ gem 'haml-rails', '~> 0.9'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'ffaker'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -39,7 +40,6 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
-  gem 'ffaker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

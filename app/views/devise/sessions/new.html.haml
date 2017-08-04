@@ -1,0 +1,10 @@
+%main.container.general-main-wrap
+  .text-center
+    %h3.general-login-title Log In
+    %a.general-login-icon{href: "#"}
+      %i.fa.fa-facebook-official
+    %p.general-login-text or
+  = render 'login_form'
+  %p.general-sign-text.text-center
+    Don’t have an Account?
+    = link_to "Sign Up", new_registration_path(resource_name), class: 'in-gold-500'
