@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   root 'home_page#index'
 
   resources :categories, only: [:show], path: 'catalog'
-  resources :books, only: [:index]
+  resources :books, only: [:show]
 end

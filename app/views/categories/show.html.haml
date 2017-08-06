@@ -4,22 +4,22 @@
     .pull-right
       .dropdown
         %a.dropdown-toggle.dropdown-btn.width-240{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-          Newest first
+          = sort_title
           %i.fa.fa-angle-down.dropdown-icon
         %ul.dropdown-menu
           %li
-            %a{href: "#"} Newest first
+            = link_to "A - Z", category_path(@category, sort_type: :title_asc)
           %li
-            %a{href: "#"} Popular first
+            = link_to "Z - A", category_path(@category, sort_type: :title_desc)
           %li
-            %a{href: "#"} Price: Low to hight
+            = link_to "Newest first", category_path(@category, sort_type: :latest)
           %li
-            %a{href: "#"} Price: Low to hight
+            = link_to "Popular first", category_path(@category)
+          %li
+            = link_to "Price: high to low", category_path(@category, sort_type: :high_price)
+          %li
+            = link_to "Price: low to high", category_path(@category, sort_type: :low_price)
     %ul.list-inline.pt-10.mb-25.mr-240
-      %li.mr-35
-        = link_to books_path, class: "filter-link" do
-          All
-          %span.badge.general-badge= books_list.count
       - categories_list.each do |category|
         %li.mr-35{:class => "#{"active" if @category == category}"}
           = link_to category_path(category), class: "filter-link" do
@@ -38,9 +38,9 @@
         %li
           %a{href: "#"} Popular first
         %li
-          %a{href: "#"} Price: Low to hight
+          %a{href: "#"} Price: low to hight
         %li
-          %a{href: "#"} Price: Low to hight
+          %a{href: "#"} Price: low to hight
     %p.in-grey-600.small.mb-10 Sort by
     .dropdown
       %a.dropdown-toggle.dropdown-btn.width-100{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
@@ -52,12 +52,12 @@
         %li
           %a{href: "#"} Popular first
         %li
-          %a{href: "#"} Price: Low to hight
+          %a{href: "#"} Price: low to hight
         %li
-          %a{href: "#"} Price: Low to hight
+          %a{href: "#"} Price: low to hight
   .mb-120
     .row
-      - @category.books.find_each do |book_row|
-        = render partial: "shared/book_row", locals: {books: book_row}
+      - @sorted_books.each_slice(4) do |book_row|
+        = render partial: "shared/books_row", locals: {books: book_row}
     .text-center
       %button.btn.btn-primary View More

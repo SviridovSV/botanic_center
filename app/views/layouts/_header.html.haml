@@ -36,12 +36,12 @@
           %li.dropdown
             %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} Home
             %ul.dropdown-menu
-              - categories_list.each do |category|
+              - categories_list.find_each(start: 2) do |category|
                 %li
                   = link_to root_path(category: category.id) do
                     = category.title
           %li
-            = link_to 'Shop', books_path
+            = link_to 'Shop', category_path(1)
           - if user_signed_in?
             %li.dropdown
               %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} My account
