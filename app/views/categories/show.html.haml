@@ -2,23 +2,7 @@
   %h1.general-title-margin Сatalog
   .hidden-xs.clearfix
     .pull-right
-      .dropdown
-        %a.dropdown-toggle.dropdown-btn.width-240{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-          = sort_title
-          %i.fa.fa-angle-down.dropdown-icon
-        %ul.dropdown-menu
-          %li
-            = link_to "A - Z", category_path(@category, sort_type: :title_asc)
-          %li
-            = link_to "Z - A", category_path(@category, sort_type: :title_desc)
-          %li
-            = link_to "Newest first", category_path(@category, sort_type: :latest)
-          %li
-            = link_to "Popular first", category_path(@category)
-          %li
-            = link_to "Price: high to low", category_path(@category, sort_type: :high_price)
-          %li
-            = link_to "Price: low to high", category_path(@category, sort_type: :low_price)
+      = render partial: "sort_dropdown", locals: {width: 240}
     %ul.list-inline.pt-10.mb-25.mr-240
       - categories_list.each do |category|
         %li.mr-35{:class => "#{"active" if @category == category}"}
@@ -30,34 +14,17 @@
     %p.in-grey-600.small.mb-10 Filter by category
     .dropdown.mb-20
       %a.dropdown-toggle.dropdown-btn.width-100{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-        Newest first
+        = @category.title
         %i.fa.fa-angle-down.dropdown-icon
       %ul.dropdown-menu
+       - categories_list.each do |category|
         %li
-          %a{href: "#"} Newest first
-        %li
-          %a{href: "#"} Popular first
-        %li
-          %a{href: "#"} Price: low to hight
-        %li
-          %a{href: "#"} Price: low to hight
+          = link_to category.title, category_path(category)
     %p.in-grey-600.small.mb-10 Sort by
-    .dropdown
-      %a.dropdown-toggle.dropdown-btn.width-100{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-        Newest first
-        %i.fa.fa-angle-down.dropdown-icon
-      %ul.dropdown-menu
-        %li
-          %a{href: "#"} Newest first
-        %li
-          %a{href: "#"} Popular first
-        %li
-          %a{href: "#"} Price: low to hight
-        %li
-          %a{href: "#"} Price: low to hight
+    = render partial: "sort_dropdown", locals: {width: 100}
   .mb-120
     .row
       - @sorted_books.each_slice(4) do |book_row|
-        = render partial: "shared/books_row", locals: {books: book_row}
+        = render partial: "books_row", locals: {books: book_row}
     .text-center
-      %button.btn.btn-primary View More
+      = paginate @sorted_books
