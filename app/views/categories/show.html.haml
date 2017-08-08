@@ -9,7 +9,6 @@
           = link_to category_path(category), class: "filter-link" do
             = category.title
             %span.badge.general-badge= category.books.count
-        }
   .mb-40.visible-xs
     %p.in-grey-600.small.mb-10 Filter by category
     .dropdown.mb-20
@@ -17,9 +16,9 @@
         = @category.title
         %i.fa.fa-angle-down.dropdown-icon
       %ul.dropdown-menu
-       - categories_list.each do |category|
-        %li
-          = link_to category.title, category_path(category)
+        - categories_list.each do |category|
+          %li
+            = link_to category.title, category_path(category)
     %p.in-grey-600.small.mb-10 Sort by
     = render partial: "sort_dropdown", locals: {width: 100}
   .mb-120
