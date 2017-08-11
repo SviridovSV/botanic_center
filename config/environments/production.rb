@@ -61,9 +61,9 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "botanic_center_#{Rails.env}"
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { :host => 'botanic_center.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'botanic-center.herokuapp.com' }
 
-  Rails.application.routes.default_url_options[:host] = 'botanic_center.herokuapp.com'
+  Rails.application.routes.default_url_options[:host] = 'botanic-center.herokuapp.com'
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
