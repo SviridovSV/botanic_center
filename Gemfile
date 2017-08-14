@@ -22,7 +22,6 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'ffaker'
 gem 'kaminari'
-gem 'foreman'
 
 group :development, :test do
   gem 'rspec-rails'
