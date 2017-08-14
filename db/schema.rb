@@ -34,13 +34,12 @@ ActiveRecord::Schema.define(version: 20170806143129) do
     t.text "description"
     t.decimal "price", precision: 10, scale: 2
     t.integer "quantity"
-    t.bigint "books_id"
     t.integer "year"
     t.text "materials"
     t.text "dimensions"
+    t.json "pictures"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["books_id"], name: "index_books_on_books_id"
   end
 
   create_table "books_categories", id: false, force: :cascade do |t|
@@ -73,5 +72,4 @@ ActiveRecord::Schema.define(version: 20170806143129) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "books", "books", column: "books_id"
 end

@@ -24,7 +24,7 @@
           %a.input-link{href: "#"}
             %i.fa.fa-plus.line-height-40
       .col-xs-7.col-md-5
-        %button.btn.btn-default.pull-right.general-position{:class => "#{"disabled" if book.in_stock?}"} Add to Cart
+        %button.btn.btn-default.pull-right.general-position{:class => "#{"disabled" unless book.in_stock?}"} Add to Cart
     .card
       %p Description
       %p.in-grey-600.small.line-height-2{id: "short_desc"}

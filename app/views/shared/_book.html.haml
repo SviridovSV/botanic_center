@@ -1,6 +1,6 @@
 .col-xs-6.col-sm-3
   .general-thumb-wrap
-    .thumbnail.general-thumbnail{:class => "#{"disabled" if book.in_stock?}"}
+    .thumbnail.general-thumbnail{:class => "#{"disabled" unless book.in_stock?}"}
       %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
       .thumb-hover
         .general-thumb-link-wrap
