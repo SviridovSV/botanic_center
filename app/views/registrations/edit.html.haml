@@ -1,0 +1,12 @@
+%main.container
+  %h1.general-title-margin Settings
+  %ul.nav.nav-tabs.mb-20{role: "tablist"}
+    %li.mb-10{role: "presentation", class: "#{"active" if is_tab?("address")}"}
+      %a{href: "/edit#address", 'aria-controls': "address", role: "tab", 'data-toggle': "tab"} Address
+    %li.mb-10{role: "presentation", class: "#{"active" if is_tab?("privacy")}"}
+      %a{href: "#privacy", 'aria-controls': "privacy", role: "tab", 'data-toggle': "tab"} Privacy
+  .tab-content
+    #address.tab-pane.fade{role: "tabpanel", class: "#{"active in" if is_tab?("address")}"}
+      = render "adress_tab"
+    #privacy.tab-pane.fade{role: "tabpanel", class: "#{"active in" if is_tab?("privacy")}"}
+      = render "privacy_tab"

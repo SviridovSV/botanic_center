@@ -6,7 +6,7 @@
     %ul.list-inline.pt-10.mb-25.mr-240
       - categories_list.each do |category|
         %li.mr-35{:class => "#{"active" if @category == category}"}
-          = link_to category_path(category), class: "filter-link" do
+          = link_to category, class: "filter-link" do
             = category.title
             %span.badge.general-badge= category.books.count
   .mb-40.visible-xs
@@ -18,7 +18,7 @@
       %ul.dropdown-menu
         - categories_list.each do |category|
           %li
-            = link_to category.title, category_path(category)
+            = link_to category.title, category
     %p.in-grey-600.small.mb-10 Sort by
     = render partial: "sort_dropdown", locals: {width: 100}
   .mb-120

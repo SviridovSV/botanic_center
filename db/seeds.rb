@@ -13,10 +13,13 @@ Category.create(title: "Photo")
 Category.create(title: "Web design")
 Category.create(title: "Web development")
 
+materials = ["paper, brick, hardcove", "paper stocks, glossym ", "lace, slate, sand", "lace, man-made fibres"]
+dimensions = [{H: 5.5, W: 4.3, D: 0.1}, {H: 1.1, W: 7.3, D: 2.9}, {H: 4.7, W: 8.7, D: 0.9}, {H: 2.4, W: 1.3, D: 0.6}]
 Category.find_each(start: 2) do |category|
-  rand(7..16).times do |n|
+  rand(25..40).times do |n|
     book = Book.create(title: FFaker::Book.title, price: rand(1..99),
-      quantity: rand(50..200), description: FFaker::Book.description)
+      quantity: rand(0..100), description: FFaker::HealthcareIpsum.paragraph, year: rand(1000..2017),
+      materials: materials[rand(0..3)], dimensions: dimensions[rand(0..3)])
     rand(1..3).times do |n|
       author = Author.create(first_name: FFaker::Name.first_name, last_name: FFaker::Name.last_name)
       book.authors << author

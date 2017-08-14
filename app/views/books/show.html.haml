@@ -1,0 +1,42 @@
+%main.container
+  %a.general-back-link{href: "#{session[:forwarding_url]}"}
+    %i.fa.fa-long-arrow-left.mr-15
+    Back to results
+  = render @book
+  .mb-80
+    %h3.in-gold-500.mb-25 Reviews (3)
+    %ul.media-list
+      %li.media.card
+        .media-left
+          %a{href: "#"}
+            %img.img-circle.logo-size.media-object{src: "https://www.smashingmagazine.com/wp-content/uploads/2015/09/smashing-book-5-2-large.jpg"}
+        .media-body
+          %div
+            %p.general-message-date.hidden-xs 11/11/16
+            %h4.media-heading.max-240.general-message-name
+              %span.general-message-verified Verified Reviewer
+              Rita J. Lewis
+          .mb-15
+            %i.fa.fa-star.rate-star
+            %i.fa.fa-star.rate-star
+            %i.fa.fa-star.rate-star
+            %i.fa.fa-star.rate-star
+            %i.fa.fa-star.rate-star
+          %p Thank you BookStore, I was very pleased to receive my order for the Moleskine diary so soon after placing the order.
+      %li.media.card
+        .media-left
+          %a{href: "#"}
+            %span.img-circle.logo-size.logo-empty.media-object M
+        .media-body
+          %div
+            %p.general-message-date.hidden-xs 11/11/16
+            %h4.media-heading.max-240.general-message-name
+              %span.general-message-verified Verified Reviewer
+              Rita J. Lewis
+          .mb-15
+            %i.fa.fa-star.rate-star
+            %i.fa.fa-star.rate-star
+            %i.fa.fa-star.rate-star
+            %i.fa.fa-star.rate-star
+            %i.fa.fa-star.rate-star.rate-empty
+          %p Thank you BookStore, I was very pleased to receive my order for the Moleskine diary so soon after placing the order.

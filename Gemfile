@@ -22,6 +22,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'ffaker'
 gem 'kaminari'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'rspec-rails'

@@ -35,6 +35,9 @@ ActiveRecord::Schema.define(version: 20170806143129) do
     t.decimal "price", precision: 10, scale: 2
     t.integer "quantity"
     t.bigint "books_id"
+    t.integer "year"
+    t.text "materials"
+    t.text "dimensions"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["books_id"], name: "index_books_on_books_id"
