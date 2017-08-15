@@ -1,12 +1,11 @@
 class Book < ApplicationRecord
-  serialize :dimensions, Hash
 
   before_save { self.materials = materials.downcase.capitalize.gsub(/,(?![ ])/, ', ') }
 
   has_and_belongs_to_many :category
   has_and_belongs_to_many :authors
 
-  mount_uploaders :pictures, PictureUploader
+  mount_uploader :picture, PictureUploader
 
   validates :title, :price, :quantity, presence: true
   validates :price, numericality: { greater_than: 0 }

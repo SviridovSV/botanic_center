@@ -1,7 +1,7 @@
 .col-xs-6.col-sm-3
   .general-thumb-wrap
     .thumbnail.general-thumbnail{:class => "#{"disabled" unless book.in_stock?}"}
-      %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+      = image_tag book.picture.thumb, class: 'img-shadow general-thumbnail-img', alt: "design-book"
       .thumb-hover
         .general-thumb-link-wrap
           = link_to book, class: "thumb-hover-link" do

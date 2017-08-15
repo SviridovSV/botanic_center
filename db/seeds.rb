@@ -7,6 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'ffaker'
 
+User.create(email: "admin@admin.com", password: "12345678", password_confirmation: "12345678", admin: true)
+
 Category.create(title: "All books")
 Category.create(title: "Mobile development")
 Category.create(title: "Photo")

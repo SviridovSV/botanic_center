@@ -24,6 +24,8 @@ gem 'ffaker'
 gem 'kaminari'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'rails_admin'
+gem 'cancancan'
 
 group :development, :test do
   gem 'rspec-rails'

@@ -16,6 +16,6 @@ module BooksHelper
   end
 
   def book_dimensions(book)
-    "H: #{book.dimensions[:H]}” x W: #{book.dimensions[:W]}” x D: #{book.dimensions[:D]}”"
+    "H: #{book.dimensions['H']}” x W: #{book.dimensions['W']}” x D: #{book.dimensions['D']}”"
   end
 end

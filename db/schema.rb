@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170806143129) do
+ActiveRecord::Schema.define(version: 20170815221031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "authors", force: :cascade do |t|
     t.string "first_name"
@@ -36,8 +37,8 @@ ActiveRecord::Schema.define(version: 20170806143129) do
     t.integer "quantity"
     t.integer "year"
     t.text "materials"
-    t.text "dimensions"
-    t.json "pictures"
+    t.json "dimensions", default: {"H"=>0, "W"=>0, "D"=>0}
+    t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -68,6 +69,7 @@ ActiveRecord::Schema.define(version: 20170806143129) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

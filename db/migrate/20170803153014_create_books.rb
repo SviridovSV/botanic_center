@@ -7,8 +7,8 @@ class CreateBooks < ActiveRecord::Migration[5.1]
       t.integer :quantity
       t.integer :year
       t.text :materials
-      t.text :dimensions
-      t.json :pictures
+      t.json :dimensions, default: {'H': 0, 'W': 0, 'D': 0}
+      t.string :picture
 
       t.timestamps
     end
