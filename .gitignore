@@ -17,7 +17,7 @@
 /yarn-error.log
 
 .byebug_history
-*.yml
+/config/database.yml
 Procfile
 
 # Ignore application configuration
