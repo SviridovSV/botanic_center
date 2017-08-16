@@ -18,6 +18,7 @@
 
 .byebug_history
 /config/database.yml
+
 Procfile
 
 # Ignore application configuration
