@@ -25,18 +25,21 @@
       %p.in-grey-600.small.line-height-2{style: "display: none", id: "full_desc"}
         = @book.description
         = link_to "Hide", "#", class: "in-gold-500 ml-10", id: "read_link"
-    .card
-      .clearfix
-        %p.general-item-info.pull-right= @book.year
-        %p.break-word Year of publication
-    .card
-      .clearfix
-        %p.general-item-info.pull-right= book_dimensions(@book)
-        %p.break-word Dimensions
-    .card
-      .clearfix
-        %p.general-item-info.pull-right= @book.materials
-        %p.break-word Materials
+    - if @book.year.present?
+      .card
+        .clearfix
+          %p.general-item-info.pull-right= @book.year
+          %p.break-word Year of publication
+    - if @book.dimensions.present?
+      .card
+        .clearfix
+          %p.general-item-info.pull-right= book_dimensions(@book)
+          %p.break-word Dimensions
+    - if @book.materials.present?
+      .card
+        .clearfix
+          %p.general-item-info.pull-right= @book.materials
+          %p.break-word Materials
     .card
       .clearfix
         %p.general-item-info.pull-right= @book.quantity
