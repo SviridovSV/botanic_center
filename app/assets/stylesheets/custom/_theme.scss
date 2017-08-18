@@ -557,6 +557,18 @@
 }
 
 //Custom
+.fa-minus {
+  &:hover {
+    color: black;
+  }
+}
+
+.fa-plus {
+  &:hover {
+    color: black;
+  }
+}
+
 .not-active {
    pointer-events: none;
    cursor: default;

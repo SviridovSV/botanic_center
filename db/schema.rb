@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20170818212340) do
   end
 
   create_table "orders", force: :cascade do |t|
+    t.decimal "subtotal", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

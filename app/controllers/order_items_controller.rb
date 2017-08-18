@@ -1,25 +1,30 @@
 class OrderItemsController < ApplicationController
   def create
     @order = current_order
-    @order.save
+    @order.save unless @order.persisted?
     @order_item = @order.order_items.new(order_item_params)
-    if @order.save
+    if @order.valid?
+      @order.save
       session[:order_id] = @order.id
     else
-      redirect_to session[:forwarding_url], alert: "Item was not added."
+      change_book_quantity(@order_item.quantity)
     end
   end
 
   def update
-    @order = current_order
-    @order_item = @order.order_items.find(params[:id])
-    @order_item.update_attributes(order_item_params)
-    redirect_to cart_path, notice: "Item was updated."
+    @order_item = current_order.order_items.find(params[:id])
+    if @order_item.quantity > params[:order_item][:quantity].to_i
+      update_order_items(1)
+    elsif @order_item.book.in_stock?
+      update_order_items(-1)
+    else
+      redirect_to cart_path, alert: "Item is out of stock."
+    end
   end
 
   def destroy
-    @order = current_order
-    @order_item = @order.order_items.find(params[:id])
+    @order_item = current_order.order_items.find(params[:id])
+    change_book_quantity(@order_item.quantity)
     @order_item.destroy
     redirect_to cart_path, notice: "Item was deleted."
   end
@@ -28,5 +33,16 @@ class OrderItemsController < ApplicationController
 
   def order_item_params
     params.require(:order_item).permit(:quantity, :book_id)
+  end
+
+  def change_book_quantity(number)
+    @order_item.book.quantity += number
+    @order_item.book.save
+  end
+
+  def update_order_items(number)
+    change_book_quantity(number)
+    @order_item.update(order_item_params)
+    redirect_to cart_path, notice: "Item was updated."
   end
 end
