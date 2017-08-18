@@ -9,22 +9,25 @@
     .row
       .col-xs-12.col-md-4
         %p.h1.in-gold-500.mt-10= shifting_price_to_currency(@book)
-      .col-xs-5.col-md-3
-        .input-group.general-position
-          %a.input-link{href: "#"}
-            %i.fa.fa-minus.line-height-40
-          %input.form-control.quantity-input{type: "text"}
-          %a.input-link{href: "#"}
-            %i.fa.fa-plus.line-height-40
-      .col-xs-7.col-md-5
-        %button.btn.btn-default.pull-right.general-position{:class => "#{"disabled" unless book.in_stock?}"} Add to Cart
-    .card
-      %p Description
-      %p.in-grey-600.small.line-height-2{id: "short_desc"}
-        = book_description(@book)
-      %p.in-grey-600.small.line-height-2{style: "display: none", id: "full_desc"}
-        = @book.description
-        = link_to "Hide", "#", class: "in-gold-500 ml-10", id: "read_link"
+      = form_for current_order.order_items.build, remote: true do |f|
+        = f.hidden_field :book_id, value: book.id
+        .col-xs-5.col-md-3
+          .input-group.general-position
+            %a.input-link.quantity-minus{href: "#"}
+              %i.fa.fa-minus.line-height-40
+            = f.text_field :quantity, value: 1, class: 'form-control quantity-input'
+            %a.input-link.quantity-plus{href: "#"}
+              %i.fa.fa-plus.line-height-40
+        .col-xs-7.col-md-5
+          = f.submit "Add to Cart", class: "btn btn-default pull-right general-position #{"disabled" unless book.in_stock?}"
+    - if @book.description.present?
+      .card
+        %p Description
+        %p.in-grey-600.small.line-height-2{id: "short_desc"}
+          = book_description(@book)
+        %p.in-grey-600.small.line-height-2{style: "display: none", id: "full_desc"}
+          = @book.description
+          = link_to "Hide", "#", class: "in-gold-500 ml-10", id: "hide_link"
     - if @book.year.present?
       .card
         .clearfix

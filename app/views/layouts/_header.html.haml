@@ -7,12 +7,12 @@
         %span.icon-bar
         %span.icon-bar
       = link_to 'Botanic Center', root_path, class: 'navbar-brand'
-      %a.shop-link.pull-right.visible-xs{href: "#"}
+      = link_to cart_path, class: "shop-link pull-right visible-xs" do
         %span.shop-icon
-          %span.shop-quantity 3
-    %a.shop-link.pull-right.hidden-xs{href: "#"}
+          %span.shop-quantity= items_in_cart
+    = link_to cart_path, class: "shop-link pull-right hidden-xs" do
       %span.shop-icon
-        %span.shop-quantity 3
+        %span.shop-quantity= items_in_cart
     #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}
       = render "layouts/mobile_navbar"
       = render "layouts/navbar"

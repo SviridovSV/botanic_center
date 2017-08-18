@@ -1,0 +1,5 @@
+- if @order.errors.any? || @order_item.errors.any?
+  alert("Not valid.")
+- else
+  $(".shop-quantity").html("#{items_in_cart}")
+  alert("Item was successfully added to cart.")

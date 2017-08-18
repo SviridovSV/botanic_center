@@ -3,6 +3,10 @@ module ApplicationHelper
     Category.all
   end
 
+  def items_in_cart
+    current_order.order_items.size
+  end
+
   def change_class(key)
     case key
     when 'notice' then "success"
