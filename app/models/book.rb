@@ -4,7 +4,7 @@ class Book < ApplicationRecord
 
   has_and_belongs_to_many :category
   has_and_belongs_to_many :authors
-  has_many :reviews, dependent: :destroy
+  has_many :reviews, -> { where status: :approved }, dependent: :destroy
 
   mount_uploader :picture, PictureUploader
 

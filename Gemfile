@@ -27,6 +27,8 @@ gem 'mini_magick'
 gem 'rails_admin'
 gem 'cancancan'
 gem 'figaro'
+gem 'aasm'
+gem 'rails_admin_aasm'
 
 group :development, :test do
   gem 'rspec-rails'

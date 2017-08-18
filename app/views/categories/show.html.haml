@@ -22,8 +22,7 @@
     %p.in-grey-600.small.mb-10 Sort by
     = render partial: "sort_dropdown", locals: {width: 100}
   .mb-120
-    .row
-      - @sorted_books.each_slice(4) do |book_row|
-        = render partial: "books_row", locals: {books: book_row}
+    - @sorted_books.each_slice(4) do |book_row|
+      = render partial: "books_row", locals: {books: book_row}
     .text-center
       = paginate @sorted_books

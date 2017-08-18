@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (4.12.2)
+      concurrent-ruby (~> 1.0)
     actioncable (5.1.2)
       actionpack (= 5.1.2)
       nio4r (~> 2.0)
@@ -211,6 +213,9 @@ GEM
       rails (>= 4.0, < 6)
       remotipart (~> 1.3)
       sass-rails (>= 4.0, < 6)
+    rails_admin_aasm (0.1.1)
+      aasm
+      rails_admin
     railties (5.1.2)
       actionpack (= 5.1.2)
       activesupport (= 5.1.2)
@@ -300,6 +305,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   bootstrap-sass
   cancancan
   capybara
@@ -324,6 +330,7 @@ DEPENDENCIES
   puma (~> 3.7)
   rails (~> 5.1.2)
   rails_admin
+  rails_admin_aasm
   rspec-rails
   sass-rails (~> 5.0)
   shoulda-matchers

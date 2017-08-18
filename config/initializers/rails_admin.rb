@@ -10,7 +10,7 @@ RailsAdmin.config do |config|
 
   ## == Cancan ==
   config.authorize_with :cancan
-
+  config.included_models = ["Review", "User", "Author", "Book", "Category"]
   ## == Pundit ==
   # config.authorize_with :pundit
 
@@ -26,16 +26,46 @@ RailsAdmin.config do |config|
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
-    new
+    new do
+      except [Review]
+    end
     export
     bulk_delete
     show
     edit
     delete
     show_in_app
-
+    state
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+  end
+
+  config.model Book do
+    list do
+      configure :dimensions do
+        searchable false
+        filterable false
+        queryable false
+        sortable false
+      end
+    end
+  end
+
+  config.model Review do
+    list do
+      fields :title, :user, :book, :created_at, :rating
+      field :status, :state
+    end
+
+    edit do
+      fields :title, :content, :user, :book, :rating, :created_at
+      field :status, :state
+    end
+
+    state({
+    states: {unprocessed: 'btn-warning', approved: 'btn-success', rejected: 'btn-danger'},
+    events: {approve: 'btn-success', reject: 'btn-danger'}
+    })
   end
 end

@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170817205132) do
     t.string "title"
     t.text "content"
     t.integer "rating"
+    t.string "status"
     t.integer "book_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
