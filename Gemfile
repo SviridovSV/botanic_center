@@ -29,6 +29,7 @@ gem 'cancancan'
 gem 'figaro'
 gem 'aasm'
 gem 'rails_admin_aasm'
+gem 'wicked'
 
 group :development, :test do
   gem 'rspec-rails'

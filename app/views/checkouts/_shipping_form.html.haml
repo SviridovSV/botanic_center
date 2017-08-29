@@ -1,0 +1,38 @@
+.col-md-5.col-md-offset-1.mb-60
+  #shipping_form{style: "display:#{use_billing_address? ? 'none' : ''}"}
+    .visible-xs.visible-sm
+      %h3.general-subtitle Shipping Address
+    .form-group{class: "#{"has-error" if has_error?("shipping", :first_name)}"}
+      %label.control-label.font-weight-light{for: "firstName"} First Name
+      = text_field_tag "shipping[first_name]", "#{saved_value("shipping", :first_name)}", placeholder: "First Name", id: "firstName", class: "form-control"
+      %span.help-block= error_message("shipping", :first_name)
+    .form-group{class: "#{"has-error" if has_error?("shipping", :last_name)}"}
+      %label.control-label.font-weight-light{for: "lastName"} Last Name
+      = text_field_tag "shipping[last_name]", "#{saved_value("shipping", :last_name)}", placeholder: "Last Name", id: "lastName", class: "form-control"
+      %span.help-block= error_message("shipping", :last_name)
+    .form-group{class: "#{"has-error" if has_error?("shipping", :address_name)}"}
+      %label.control-label.font-weight-light{for: "address"} Address
+      = text_field_tag "shipping[address_name]", "#{saved_value("shipping", :address_name)}", placeholder: "Address", id: "address", class: "form-control"
+      %span.help-block= error_message("shipping", :address_name)
+    .form-group{class: "#{"has-error" if has_error?("shipping", :city)}"}
+      %label.control-label.font-weight-light{for: "city"} City
+      = text_field_tag "shipping[city]", "#{saved_value("shipping", :city)}", id: "city", placeholder: "City", class: "form-control"
+      %span.help-block= error_message("shipping", :city)
+    .form-group{class: "#{"has-error" if has_error?("shipping", :zip)}"}
+      %label.control-label.font-weight-light{for: "zip"} Zip
+      = text_field_tag "shipping[zip]", "#{saved_value("shipping", :zip)}", id: "zip", placeholder: "Zip", class: "form-control"
+      %span.help-block= error_message("shipping", :zip)
+    .form-group{class: "#{"has-error" if has_error?("shipping", :сountry)}"}
+      %label.control-label.font-weight-light{for: "сountry"} Country
+      = select_tag "shipping[country]", options_for_select(["Ukraine", "USA", "Zimbabwe"], "#{saved_value("shipping", :сountry)}"), id: "country", class: "form-control"
+      %span.help-block= error_message("shipping", :сountry)
+    .form-group{class: "#{"has-error" if has_error?("shipping", :phone)}"}
+      %label.control-label.font-weight-light{for: "phone"} Phone
+      = text_field_tag "shipping[phone]", "#{saved_value("shipping", :phone)}", placeholder: "Example +355 66 123 4567", id: "phone", class: "form-control"
+      %span.help-block= error_message("shipping", :phone)
+  .form-group.checkbox
+    %label.font-weight-light.pl-0
+      = check_box_tag "billing[address_type]", "both", use_billing_address?, class: "checkbox-input", hidden: "true", id: "check_clone"
+      %span.checkbox-icon
+        %i.fa.fa-check
+      %span.checkbox-text Use Billing Adress

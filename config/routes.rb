@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
   devise_for :users, controllers: { registrations: 'registrations',
     omniauth_callbacks: "users/omniauth_callbacks" }
 
@@ -9,5 +10,6 @@ Rails.application.routes.draw do
   resources :books, only: [:show]
   resources :reviews, only: [:create]
   resources :order_items, only: [:create, :update, :destroy]
+  resources :checkouts
   resource  :cart, only: [:show]
 end

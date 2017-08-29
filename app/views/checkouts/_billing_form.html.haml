@@ -1,0 +1,32 @@
+.col-md-5.mb-40
+  .visible-xs.visible-sm
+    %h3.general-subtitle Billing Address
+    %p.general-info-text all fields are required
+  .form-group{class: "#{"has-error" if has_error?("billing", :first_name)}"}
+    %label.control-label.font-weight-light{for: "firstName"} First Name
+    = text_field_tag "billing[first_name]", "#{saved_value("billing", :first_name)}", placeholder: "First Name", id: "firstName", class: "form-control"
+    %span.help-block= error_message("billing", :first_name)
+  .form-group{class: "#{"has-error" if has_error?("billing", :last_name)}"}
+    %label.control-label.font-weight-light{for: "lastName"} Last Name
+    = text_field_tag "billing[last_name]", "#{saved_value("billing", :last_name)}", placeholder: "Last Name", id: "lastName", class: "form-control"
+    %span.help-block= error_message("billing", :last_name)
+  .form-group{class: "#{"has-error" if has_error?("billing", :address_name)}"}
+    %label.control-label.font-weight-light{for: "address"} Address
+    = text_field_tag "billing[address_name]", "#{saved_value("billing", :address_name)}", placeholder: "Address", id: "address", class: "form-control"
+    %span.help-block= error_message("billing", :address_name)
+  .form-group{class: "#{"has-error" if has_error?("billing", :city)}"}
+    %label.control-label.font-weight-light{for: "city"} City
+    = text_field_tag "billing[city]", "#{saved_value("billing", :city)}", id: "city", placeholder: "City", class: "form-control"
+    %span.help-block= error_message("billing", :city)
+  .form-group{class: "#{"has-error" if has_error?("billing", :zip)}"}
+    %label.control-label.font-weight-light{for: "zip"} Zip
+    = text_field_tag "billing[zip]", "#{saved_value("billing",  :zip)}", id: "zip", placeholder: "Zip", class: "form-control"
+    %span.help-block= error_message("billing", :zip)
+  .form-group{class: "#{"has-error" if has_error?("billing", :сountry)}"}
+    %label.control-label.font-weight-light{for: "сountry"} Country
+    = select_tag "billing[country]", options_for_select(["Ukraine", "USA", "Zimbabwe"], "#{saved_value("billing", :сountry)}"), id: "country", class: "form-control"
+    %span.help-block= error_message("billing", :сountr)
+  .form-group{class: "#{"has-error" if has_error?("billing", :phone)}"}
+    %label.control-label.font-weight-light{for: "phone"} Phone
+    = text_field_tag "billing[phone]", "#{saved_value("billing", :phone)}", placeholder: "Example +355 66 123 4567", id: "phone", class: "form-control"
+    %span.help-block= error_message("billing", :phone)
