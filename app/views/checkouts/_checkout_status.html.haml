@@ -1,0 +1,7 @@
+%h1.general-title-margin Checkout
+%ul.steps.list-inline
+  - @steps.each_with_index do |stepp, index|
+    %li.step-divider{style: "display:#{index == 0 ? 'none' : ''}"}
+    %li.step{class: "#{"active" if past_step?(stepp) || stepp == step}"}
+      %span.step-number= index + 1
+      %span.step-text.hidden-xs= stepp.to_s.capitalize

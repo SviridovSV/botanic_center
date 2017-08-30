@@ -1,7 +1,7 @@
 class OrderItemsController < ApplicationController
   def create
     @order = current_order
-    @order.save unless @order.persisted?
+    save_order_with_user
     @order_item = @order.order_items.new(order_item_params)
     if @order.valid?
       @order.save
@@ -37,5 +37,12 @@ class OrderItemsController < ApplicationController
     @order_item.book.save
     @order_item.update(order_item_params)
     redirect_to cart_path, notice: "Item was updated."
+  end
+
+  def save_order_with_user
+    unless @order.persisted?
+      @order.user_id = current_user.id if signed_in?
+      @order.save
+    end
   end
 end

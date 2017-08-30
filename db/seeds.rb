@@ -30,3 +30,7 @@ Category.find_each(start: 2) do |category|
     category.books << book
   end
 end
+
+Delivery.create(name: "Delivery Next Day!", min_day: 1, max_day: 2, price: 10)
+Delivery.create(name: "Super perevozki", min_day: 4, max_day: 8, price: 5)
+Delivery.create(name: "Pick Up In-Store", min_day: 1, max_day: 10, price: 0)

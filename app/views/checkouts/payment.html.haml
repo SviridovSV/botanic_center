@@ -1,0 +1,45 @@
+%main.container.mb-res-50
+  = render "checkout_status"
+  %h3.general-subtitle Credit Card
+  = form_for(CreditCard.new, url: wizard_path, method: :put, class: "max-600 mb-80") do |f|
+    .form-group{class: "#{"has-error" if card_has_error?(:card_number)}"}
+      %label.control-label.font-weight-light{for: "cardNumber"} Card Number
+      = f.text_field :card_number, value: card_saved_value(:card_number), placeholder: "Card Number", class: "form-control", id: "cardNumber"
+      %span.help-block= card_error_message(:card_number)
+    .row
+      .col-sm-6
+        .form-group{class: "#{"has-error" if card_has_error?(:name_on_card)}"}
+          %label.control-label.font-weight-light{for: "cardName"} Name on Card
+          = f.text_field :name_on_card, value: card_saved_value(:name_on_card), placeholder: "Name on Card", class: "form-control", id: "cardName"
+          %span.help-block= card_error_message(:name_on_card)
+      .col-sm-3
+        .form-group{class: "#{"has-error" if card_has_error?(:mm_yy)}"}
+          %label.control-label.font-weight-light{for: "firstName"} MM / YY
+          = f.text_field :mm_yy, value: card_saved_value(:mm_yy), placeholder: "MM / YY", maxlength: "5", class: "form-control", id: "firstName"
+          %span.help-block= card_error_message(:mm_yy)
+      .col-sm-3
+        .form-group.relative{class: "#{"has-error" if card_has_error?(:cvv)}"}
+          %label.control-label.font-weight-light{for: "cvv"} CVV
+          = f.text_field :cvv, value: card_saved_value(:cvv), placeholder: "CVV", maxlength: "4", class: "form-control", id: "cvv"
+          %i.fa.fa-question-circle.general-form-help.font-18{title: "3-digit security code, usually found on the back of your card. American Express cards has 4-digit code, located on the front"}
+          %span.help-block= card_error_message(:cvv)
+    .general-text-align
+      %p.in-gold-500.font-18 Order Summary
+      %table.general-summary-table
+        %tr
+          %td
+            %p.font-16 Subtotal:
+          %td
+            %p.font-16 €117.69
+        %tr
+          %td
+            %p.font-16 Coupon:
+          %td
+            %p.font-16 €0.00
+        %tr
+          %td
+            %strong.font-18 Order Total:
+          %td
+            %strong.font-18 €117.69
+    .text-center
+      = f.submit "Save and Continue", class: "btn btn-default center-block mb-80"

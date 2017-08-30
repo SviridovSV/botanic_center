@@ -1,14 +1,16 @@
 class CheckoutsController < ApplicationController
   include Wicked::Wizard
 
-  steps :address, :delivery
+  steps :address, :delivery, :payment, :confirm, :complete
 
   def show
+    @steps = steps
     @order = current_order
     render_wizard
   end
 
   def update
+    @steps = steps
     @order = current_order
     case step
     when :address
@@ -19,10 +21,23 @@ class CheckoutsController < ApplicationController
       end
       render_addresses_forms
     when :delivery
+      render_delivery_form
+    when :payment
+      save_or_update_card
+      render_wizard @order.credit_card
     end
   end
 
   private
+
+  def save_or_update_card
+    if @order.credit_card.try(:persisted?)
+      @order.credit_card.update(credit_card_params)
+    else
+      @order.create_credit_card(credit_card_params)
+    end
+    @order.save
+  end
 
   def create_addresses
     @order.addresses.new(billing_address_params)
@@ -48,11 +63,24 @@ class CheckoutsController < ApplicationController
     params.require(:billing).permit(:first_name, :last_name, :address_name, :city, :zip, :country, :phone, :address_type)
   end
 
+  def credit_card_params
+    params.require(:credit_card).permit(:card_number, :name_on_card, :mm_yy, :cvv)
+  end
+
   def render_addresses_forms
     if @order.get_address("billing").errors.any? || @order.get_address("shipping").errors.any?
       render_wizard
     else
       render_wizard @order
+    end
+  end
+
+  def render_delivery_form
+    if params[:delivery]
+      @order.delivery_id = params[:delivery]
+      render_wizard @order
+    else
+      render_wizard
     end
   end
 end

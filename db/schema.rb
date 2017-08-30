@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170820180259) do
+ActiveRecord::Schema.define(version: 20170830222542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,24 @@ ActiveRecord::Schema.define(version: 20170820180259) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "credit_cards", force: :cascade do |t|
+    t.string "card_number"
+    t.string "name_on_card"
+    t.string "mm_yy"
+    t.string "cvv"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "deliveries", force: :cascade do |t|
+    t.decimal "price", precision: 10, scale: 2
+    t.string "name"
+    t.integer "min_day"
+    t.integer "max_day"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "order_items", force: :cascade do |t|
     t.integer "quantity"
     t.bigint "order_id"
@@ -81,9 +99,13 @@ ActiveRecord::Schema.define(version: 20170820180259) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.decimal "subtotal", precision: 10, scale: 2
+    t.decimal "total_price", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "delivery_id"
+    t.string "status"
+    t.integer "credit_card_id"
+    t.integer "user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
