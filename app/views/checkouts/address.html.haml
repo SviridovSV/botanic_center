@@ -20,10 +20,10 @@
           %td
             %p.font-16 Item Total:
           %td
-            %p.font-16= number_to_currency(current_order.subtotal, unit: '€')
+            %p.font-16= number_to_currency(@order.subtotal, unit: '€')
         %tr
           %td
             %p.font-16 Order Total:
           %td
-            %p.font-16= number_to_currency(current_order.subtotal, unit: '€')
+            %p.font-16= number_to_currency(@order.total_price, unit: '€')
       = submit_tag "Save and Continue", method: :put, class: "btn btn-default center-block mb-20"

@@ -26,4 +26,4 @@
           %td
             %span.in-grey-600 SubTotal
           %td
-            %span.font-16.in-gold-500= item.total_price
+            %span.font-16.in-gold-500= number_to_currency(item.total_price, unit: '€')

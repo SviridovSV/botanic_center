@@ -1,0 +1,13 @@
+.col-sm-3
+  %h3.general-subtitle= "#{type.capitalize} Address"
+  %p.general-address
+    = customer_name("type")
+    = link_to "edit", wizard_path(:address, edit: true), class: "general-edit"
+    %br
+    = @order.get_address("type").address_name
+    %br
+    = @order.get_address("type").city
+    %br
+    = @order.get_address("type").country
+    %br
+    = "Phone " + @order.get_address("type").phone

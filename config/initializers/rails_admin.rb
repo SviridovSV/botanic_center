@@ -68,4 +68,21 @@ RailsAdmin.config do |config|
     events: {approve: 'btn-success', reject: 'btn-danger'}
     })
   end
+
+  config.model Order do
+    list do
+      fields :total_price, :user, :delivery, :created_at, :coupon
+      field :state, :state
+    end
+
+    edit do
+      fields :total_price, :user, :delivery, :created_at, :coupon, :created_at, :credit_card, :order_items
+      field :state, :state
+    end
+
+    state({
+    states: {in_delivery: 'btn-warning', delivered: 'btn-success', canceled: 'btn-danger', in_progress: 'btn-warning', in_queuen: 'btn-warning'},
+    events: {start_delivery: 'btn-success', finish_delivery: 'btn-success', cancel: 'btn-danger'}
+    })
+  end
 end

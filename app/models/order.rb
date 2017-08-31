@@ -1,5 +1,7 @@
 class Order < ApplicationRecord
-  before_save { self[:total_price] = subtotal }
+  include AASM
+
+  before_save { update_total_price }
 
   has_many :order_items, dependent: :destroy
   has_many :addresses, dependent: :destroy
@@ -7,6 +9,29 @@ class Order < ApplicationRecord
   belongs_to :user
   belongs_to :delivery
   belongs_to :credit_card
+
+  default_scope { order(created_at: :desc) }
+
+  aasm column: 'state', whiny_transitions: false do
+    state :in_progress, initial: true
+    state :in_queuen, :in_delivery, :delivered, :canceled
+
+    event :confirm do
+      transitions :from => :in_progress, :to => :in_queuen
+    end
+
+    event :start_delivery do
+      transitions :from => :in_queuen, :to => :in_delivery
+    end
+
+    event :finish_delivery do
+      transitions :from => :in_delivery, :to => :delivered
+    end
+
+    event :cancel do
+      transitions :from => [:in_queuen, :in_delivery, :delivered, :canceled], :to => :canceled
+    end
+  end
 
   def subtotal
     order_items.collect(&:total_price).sum
@@ -17,5 +42,11 @@ class Order < ApplicationRecord
       return addresses.first
     end
     addresses.select { |address| address.address_type == type }[0]
+  end
+
+  private
+
+  def update_total_price
+    self.total_price = subtotal - coupon + (delivery.nil? ? 0 : delivery.price)
   end
 end

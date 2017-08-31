@@ -34,4 +34,8 @@ module CheckoutsHelper
   def card_saved_value(field)
     @order.credit_card[field] if @order.credit_card
   end
+
+  def customer_name(type)
+    @order.get_address(type).first_name + " " + @order.get_address(type).last_name
+  end
 end

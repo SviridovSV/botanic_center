@@ -1,11 +1,15 @@
 class CheckoutsController < ApplicationController
   include Wicked::Wizard
 
+  before_action :authenticate_user!
+  before_action :check_empty_cart
+
   steps :address, :delivery, :payment, :confirm, :complete
 
   def show
-    @steps = steps
     @order = current_order
+    save_order_to_user unless @order.user
+    session.delete(:order_id) if step == :complete
     render_wizard
   end
 
@@ -25,6 +29,9 @@ class CheckoutsController < ApplicationController
     when :payment
       save_or_update_card
       render_wizard @order.credit_card
+    when :confirm
+      @order.confirm
+      render_wizard @order
     end
   end
 
@@ -82,5 +89,14 @@ class CheckoutsController < ApplicationController
     else
       render_wizard
     end
+  end
+
+  def save_order_to_user
+    @order.user = current_user
+    @order.save
+  end
+
+  def check_empty_cart
+    redirect_to cart_path, alert: "Cart is empty" if current_order.order_items.count == 0
   end
 end
