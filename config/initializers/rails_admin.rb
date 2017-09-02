@@ -76,7 +76,7 @@ RailsAdmin.config do |config|
     end
 
     edit do
-      fields :total_price, :user, :delivery, :created_at, :coupon, :created_at, :credit_card, :order_items
+      fields :total_price, :user, :delivery, :coupon, :created_at, :credit_card, :order_items
       field :state, :state
     end
 

@@ -10,7 +10,14 @@ class Order < ApplicationRecord
   belongs_to :delivery
   belongs_to :credit_card
 
+  SORT_TITLES = {:all => "All", :in_progress => "In Progress", :in_queuen => "Waiting for processing",
+                 :in_delivery => "In Delivery", :delivered => "Delivered"}.freeze
+
   default_scope { order(created_at: :desc) }
+  scope :in_progress, -> { where(state: :in_progress) }
+  scope :in_queuen, -> { where(state: :in_queuen) }
+  scope :in_delivery, -> { where(state: :in_delivery) }
+  scope :delivered, -> { where(state: :delivered) }
 
   aasm column: 'state', whiny_transitions: false do
     state :in_progress, initial: true
@@ -42,6 +49,10 @@ class Order < ApplicationRecord
       return addresses.first
     end
     addresses.select { |address| address.address_type == type }[0]
+  end
+
+  def track_number
+    "R" + id.to_s
   end
 
   private

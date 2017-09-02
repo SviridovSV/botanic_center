@@ -1,22 +1,20 @@
 %main.container.general-main-wrap
-  = render "checkout_status"
+  %h1.general-title-margin= "Order " + @order.track_number
   .row.mb-20
-    = render partial: "address_info", locals: {type: "shipping", edit: true}
-    = render partial: "address_info", locals: {type: "billing", edit: true}
+    = render partial: "checkouts/address_info", locals: {type: "shipping", edit: false}
+    = render partial: "checkouts/address_info", locals: {type: "billing", edit: false}
     .col-sm-3
-      %h3.general-subtitle Shipments
+      %h3.general-subtitle.mt-0 Shipments
       %p.general-address
         = @order.delivery.name
-        = link_to "edit", wizard_path(:delivery, edit: true), class: "general-edit"
     .col-sm-3
-      %h3.general-subtitle Payment Information
+      %h3.general-subtitle.mt-0 Payment Information
       %p.general-address
         = "**** **** **** #{@order.credit_card.card_number[-4..-1]}"
-        = link_to "edit", wizard_path(:payment, edit: true), class: "general-edit"
         %br
         = @order.credit_card.mm_yy
   .visible-xs
-    = render "mobile_items"
+    = render "checkouts/mobile_items"
   .hidden-xs.divider-lg.pt-20
     %table.table.table-hover
       %thead
@@ -31,10 +29,8 @@
           %th
             %span.in-grey-600 Total
       %tbody
-        = render "items"
+        = render "checkouts/items"
   .text-center.general-text-right
     %p.in-gold-500.font-18 Order Summary
     %table.general-summary-table.general-summary-table-right.general-text-right
-      = render "summary"
-  .text-center
-    = link_to "Place Order", wizard_path, method: :put, class: "btn btn-default mb-20 "
+      = render "checkouts/summary"

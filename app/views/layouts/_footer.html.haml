@@ -9,7 +9,7 @@
             = link_to 'Shop', category_path(1), class: "nav-link"
           - if user_signed_in?
             %li
-              %a.nav-link{href: "#"} Orders
+              = link_to "Orders", orders_path, class: "nav-link"
             %li
               = link_to "Settings", edit_user_registration_path, class: "nav-link"
       .col-sm-3

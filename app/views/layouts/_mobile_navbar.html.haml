@@ -16,7 +16,7 @@
         %a{type: "button", 'data-toggle': "collapse", href: "#account", 'aria-expanded': "false", 'aria-controls': "menu"} My account
         %ul#account.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
           %li
-            %a.collapse-link{href: "#"} Orders
+            = link_to "Orders", orders_path, class: "collapse-link"
           %li
             = link_to "Settings", edit_user_registration_path, class: "collapse-link"
           - if current_user.admin?
