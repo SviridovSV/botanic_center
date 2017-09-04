@@ -6,7 +6,7 @@
     %ul.list-inline.pt-10.mb-25.mr-240
       - categories_list.each do |category|
         %li.mr-35{:class => "#{"active" if @category == category}"}
-          = link_to category, class: "filter-link" do
+          = link_to category_path(category, sort_type: params[:sort_type]), class: "filter-link" do
             = category.title
             %span.badge.general-badge= category.books.count
   .mb-40.visible-xs

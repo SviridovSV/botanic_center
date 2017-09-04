@@ -9,6 +9,11 @@ class OrdersController < ApplicationController
   def show
   end
 
+  def continue_shopping
+    session[:order_id] = params[:id]
+    redirect_to category_path(1)
+  end
+
   private
 
   def correct_user

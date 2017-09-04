@@ -45,19 +45,19 @@ class Order < ApplicationRecord
   end
 
   def get_address(type)
-    if addresses.first.try(:address_type) == "both"
+    if addresses.first.try(:address_type) == 'both'
       return addresses.first
     end
     addresses.select { |address| address.address_type == type }[0]
   end
 
   def track_number
-    "R" + id.to_s
+    'R' + id.to_s
   end
 
   private
 
   def update_total_price
-    self.total_price = subtotal - coupon + (delivery.nil? ? 0 : delivery.price)
+    self.total_price = subtotal - (coupon < subtotal ? coupon : 0) + (delivery.nil? ? 0 : delivery.price)
   end
 end

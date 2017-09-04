@@ -1,18 +1,18 @@
 %main.container.general-main-wrap
   %h1.general-title-margin= "Order " + @order.track_number
   .row.mb-20
-    = render partial: "checkouts/address_info", locals: {type: "shipping", edit: false}
-    = render partial: "checkouts/address_info", locals: {type: "billing", edit: false}
+    = (render partial: "checkouts/address_info", locals: {type: "shipping", edit: false}) if @order.get_address("shipping")
+    = (render partial: "checkouts/address_info", locals: {type: "billing", edit: false}) if @order.get_address("billing")
     .col-sm-3
       %h3.general-subtitle.mt-0 Shipments
       %p.general-address
-        = @order.delivery.name
+        = @order.delivery.try(:name)
     .col-sm-3
       %h3.general-subtitle.mt-0 Payment Information
       %p.general-address
-        = "**** **** **** #{@order.credit_card.card_number[-4..-1]}"
+        = "**** **** **** #{@order.credit_card.try(:card_number[-4..-1])}"
         %br
-        = @order.credit_card.mm_yy
+        = @order.credit_card.try(:mm_yy)
   .visible-xs
     = render "checkouts/mobile_items"
   .hidden-xs.divider-lg.pt-20
@@ -34,3 +34,5 @@
     %p.in-gold-500.font-18 Order Summary
     %table.general-summary-table.general-summary-table-right.general-text-right
       = render "checkouts/summary"
+    .text-center
+      = (link_to "Continue shopping", continue_shopping_order_path(@order.id), class: "btn btn-default mb-20") if @order.state == "in_progress"

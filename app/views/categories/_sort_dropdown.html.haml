@@ -10,7 +10,7 @@
     %li
       = link_to "Newest first", category_path(@category, sort_type: :latest)
     %li
-      = link_to "Popular first", category_path(@category)
+      = link_to "Popular first", category_path(@category, sort_type: :popular)
     %li
       = link_to "Price: high to low", category_path(@category, sort_type: :high_price)
     %li

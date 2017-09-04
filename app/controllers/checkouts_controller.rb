@@ -8,8 +8,11 @@ class CheckoutsController < ApplicationController
 
   def show
     @order = current_order
-    save_order_to_user unless @order.user
-    session.delete(:order_id) if step == :complete
+    save_user_to_order unless @order.user
+    if step == :complete
+      CheckoutMailer.complete_email(current_user, @order).deliver_now
+      session.delete(:order_id)
+    end
     render_wizard
   end
 
@@ -18,7 +21,7 @@ class CheckoutsController < ApplicationController
     @order = current_order
     case step
     when :address
-      if @order.get_address("billing").try(:persisted?)
+      if @order.get_address('billing').try(:persisted?)
         update_addresses
       else
         create_addresses
@@ -48,22 +51,22 @@ class CheckoutsController < ApplicationController
 
   def create_addresses
     @order.addresses.new(billing_address_params)
-    @order.addresses.new(shipping_address_params) unless params[:billing][:address_type] == "both"
+    @order.addresses.new(shipping_address_params) unless params[:billing][:address_type] == 'both'
   end
 
   def update_addresses
-    @order.get_address("billing").update(billing_address_params)
-    unless params[:billing][:address_type] == "both"
+    @order.get_address('billing').update(billing_address_params)
+    unless params[:billing][:address_type] == 'both'
       if @order.addresses.size < 2
         @order.addresses.new(shipping_address_params)
       else
-        @order.get_address("shipping").update(shipping_address_params)
+        @order.get_address('shipping').update(shipping_address_params)
       end
     end
   end
 
   def shipping_address_params
-    params.require(:shipping).permit(:first_name, :last_name, :address_name, :city, :zip, :country, :phone, :address_type))
+    params.require(:shipping).permit(:first_name, :last_name, :address_name, :city, :zip, :country, :phone, :address_type)
   end
 
   def billing_address_params
@@ -91,12 +94,12 @@ class CheckoutsController < ApplicationController
     end
   end
 
-  def save_order_to_user
+  def save_user_to_order
     @order.user = current_user
     @order.save
   end
 
   def check_empty_cart
-    redirect_to cart_path, alert: "Cart is empty" if current_order.order_items.count == 0
+    redirect_to cart_path, alert: 'Cart is empty' if current_order.order_items.count == 0
   end
 end

@@ -10,7 +10,7 @@ RailsAdmin.config do |config|
 
   ## == Cancan ==
   config.authorize_with :cancan
-  config.included_models = ["Review", "User", "Author", "Book", "Category", "Order", "OrderItem", "Address", "Delivery", "CreditCard"]
+
   ## == Pundit ==
   # config.authorize_with :pundit
 
@@ -84,5 +84,25 @@ RailsAdmin.config do |config|
     states: {in_delivery: 'btn-warning', delivered: 'btn-success', canceled: 'btn-danger', in_progress: 'btn-warning', in_queuen: 'btn-warning'},
     events: {start_delivery: 'btn-success', finish_delivery: 'btn-success', cancel: 'btn-danger'}
     })
+  end
+
+  config.model 'Address' do
+    visible false
+  end
+
+  config.model 'CreditCard' do
+    visible false
+  end
+
+  config.model 'OrderItem' do
+    visible false
+  end
+
+  config.model 'Delivery' do
+    visible false
+  end
+
+  config.model 'Users' do
+    visible false
   end
 end

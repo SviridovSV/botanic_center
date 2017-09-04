@@ -1,5 +1,5 @@
 module OrdersHelper
-  def sort_title
+  def orders_sort_title
     SortOrdersService.new(params[:sort_type]).choose_title
   end
 

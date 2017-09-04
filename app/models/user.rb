@@ -4,6 +4,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook]
 
   has_many :reviews, dependent: :destroy
+  has_many :addresses, dependent: :destroy
   has_many :orders
 
   def self.from_omniauth(auth)
