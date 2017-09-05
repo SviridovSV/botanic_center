@@ -7,12 +7,12 @@
       %h3.general-subtitle Shipments
       %p.general-address
         = @order.delivery.name
-        = link_to "edit", wizard_path(:delivery, edit: true), class: "general-edit"
+        = link_to "edit", wizard_path(:delivery, skip: true), class: "general-edit"
     .col-sm-3
       %h3.general-subtitle Payment Information
       %p.general-address
         = "**** **** **** #{@order.credit_card.card_number[-4..-1]}"
-        = link_to "edit", wizard_path(:payment, edit: true), class: "general-edit"
+        = link_to "edit", wizard_path(:payment, skip: true), class: "general-edit"
         %br
         = @order.credit_card.mm_yy
   .visible-xs

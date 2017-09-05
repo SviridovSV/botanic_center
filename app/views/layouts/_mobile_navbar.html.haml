@@ -19,7 +19,7 @@
             = link_to "Orders", orders_path, class: "collapse-link"
           %li
             = link_to "Settings", edit_user_registration_path, class: "collapse-link"
-          - if current_user.admin?
+          - if can? :access, :rails_admin
             %li
               = link_to 'Admin panel', rails_admin.dashboard_path, class: "collapse-link"
           %li

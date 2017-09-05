@@ -18,7 +18,7 @@
       %ul.dropdown-menu
         - categories_list.each do |category|
           %li
-            = link_to category.title, category
+            = link_to category.title, category_path(category, sort_type: params[:sort_type])
     %p.in-grey-600.small.mb-10 Sort by
     = render partial: "sort_dropdown", locals: {width: 100}
   .mb-120

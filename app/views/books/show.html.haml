@@ -8,7 +8,7 @@
       %h3.in-gold-500.mb-25= "Reviews (#{@book.reviews.count})"
     %ul.media-list
       = render @book.reviews
-    - if signed_in?
+    - if can? :create, Review
       %h3 Write a Review
       =render partial: "reviews/review_form", locals: {book: @book}
     - else
