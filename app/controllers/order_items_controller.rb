@@ -44,10 +44,4 @@ class OrderItemsController < ApplicationController
     @order.save
     redirect_to cart_path, notice: "Item was updated."
   end
-
-  def save_user_to_order
-    unless @order.user
-      @order.user = current_user
-      @order.save
-    end
 end

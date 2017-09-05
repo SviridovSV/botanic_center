@@ -24,7 +24,7 @@
       %span.help-block= address_error_message("shipping", :zip)
     .form-group{class: "#{"has-error" if address_has_error?("shipping", :сountry)}"}
       %label.control-label.font-weight-light{for: "сountry"} Country
-      = select_tag "shipping[country]", options_for_select(["Ukraine", "USA", "Zimbabwe"], "#{address_saved_value("shipping", :сountry)}"), id: "country", class: "form-control"
+      = select_tag "shipping[country]", options_for_select(["Ukraine", "USA", "Zimbabwe"], address_saved_value("shipping", :сountry)), id: "country", class: "form-control"
       %span.help-block= address_error_message("shipping", :сountry)
     .form-group{class: "#{"has-error" if address_has_error?("shipping", :phone)}"}
       %label.control-label.font-weight-light{for: "phone"} Phone

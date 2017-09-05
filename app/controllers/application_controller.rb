@@ -12,6 +12,14 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def save_user_to_order
+    @order = current_order
+    if @order.persisted?
+      @order.user = current_user
+      @order.save
+    end
+  end
+
   def save_location
     session[:forwarding_url] = request.original_url if request.get?
   end

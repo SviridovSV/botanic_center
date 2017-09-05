@@ -94,11 +94,6 @@ class CheckoutsController < ApplicationController
     end
   end
 
-  def save_user_to_order
-    @order.user = current_user
-    @order.save
-  end
-
   def check_empty_cart
     redirect_to cart_path, alert: 'Cart is empty' if current_order.order_items.count == 0
   end
