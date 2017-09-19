@@ -3,16 +3,18 @@
   .row.mb-20
     = (render partial: "checkouts/address_info", locals: {type: "shipping", edit: false}) if @order.get_address("shipping")
     = (render partial: "checkouts/address_info", locals: {type: "billing", edit: false}) if @order.get_address("billing")
-    .col-sm-3
-      %h3.general-subtitle.mt-0 Shipments
-      %p.general-address
-        = @order.delivery.try(:name)
-    .col-sm-3
-      %h3.general-subtitle.mt-0 Payment Information
-      %p.general-address
-        = "**** **** **** #{@order.credit_card.try(:card_number[-4..-1])}"
-        %br
-        = @order.credit_card.try(:mm_yy)
+    - unless @order.delivery.nil?
+      .col-sm-3
+        %h3.general-subtitle.mt-0 Shipments
+        %p.general-address
+          = @order.delivery.name
+    - unless @order.credit_card.nil?
+      .col-sm-3
+        %h3.general-subtitle.mt-0 Payment Information
+        %p.general-address
+          = "**** **** **** #{@order.credit_card.card_number[-4..-1]}"
+          %br
+          = @order.credit_card.try(:mm_yy)
   .visible-xs
     = render "checkouts/mobile_items"
   .hidden-xs.divider-lg.pt-20

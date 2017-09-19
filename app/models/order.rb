@@ -36,7 +36,7 @@ class Order < ApplicationRecord
     end
 
     event :cancel do
-      transitions :from => [:in_queuen, :in_delivery, :delivered, :canceled], :to => :canceled
+      transitions :from => [:in_queuen, :in_delivery, :in_progress], :to => :canceled
     end
   end
 
@@ -57,7 +57,12 @@ class Order < ApplicationRecord
 
   private
 
+  def use_coupon
+    return 0 if coupon >= subtotal
+    coupon
+  end
+
   def update_total_price
-    self.total_price = subtotal - (coupon < subtotal ? coupon : 0) + (delivery.nil? ? 0 : delivery.price)
+    self.total_price = subtotal - use_coupon + (delivery.nil? ? 0 : delivery.price)
   end
 end

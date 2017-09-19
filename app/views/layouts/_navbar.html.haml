@@ -5,7 +5,7 @@
       %ul.dropdown-menu
         - categories_list.find_each(start: 2) do |category|
           %li
-            = link_to root_path(category: category.id) do
+            = link_to root_path(category_id: category.id) do
               = category.title
       %li
         = link_to 'Shop', category_path(1)

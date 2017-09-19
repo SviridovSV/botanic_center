@@ -35,6 +35,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'wicked'
 
 group :development, :test do
+  gem 'factory_girl_rails'
   gem 'foreman'
   gem 'pry'
   gem 'rspec-rails'

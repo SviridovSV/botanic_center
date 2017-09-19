@@ -1,13 +1,13 @@
 class SortOrdersService
   DEFAULT_SORT = :all
 
-  def initialize(sort_type, user = nil)
+  def initialize(sort_type, orders = nil)
     @sort_type = sort_type
-    @user = user
+    @orders = orders
   end
 
   def sort_orders
-    @user.orders.send(choose_sort)
+    @orders.send(choose_sort)
   end
 
   def choose_title

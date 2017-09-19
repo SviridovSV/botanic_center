@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :correct_user, only: :show
 
   def index
-    @orders = SortOrdersService.new(params[:sort_type], current_user).sort_orders
+    @orders = SortOrdersService.new(params[:sort_type], current_user.orders).sort_orders
   end
 
   def show

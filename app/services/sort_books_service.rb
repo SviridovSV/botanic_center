@@ -1,14 +1,14 @@
 class SortBooksService
   DEFAULT_SORT = :title_asc
 
-  def initialize(params, category = nil)
+  def initialize(params, books = nil)
     @sort_type = params[:sort_type]
-    @category = category
+    @books = books
   end
 
   def sort_books
-    return Book.send(choose_sort) if @category.nil?
-    @category.books.send(choose_sort)
+    return Book.send(choose_sort) if @books.nil?
+    @books.send(choose_sort)
   end
 
   def choose_title

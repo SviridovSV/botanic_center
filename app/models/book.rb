@@ -1,6 +1,5 @@
 class Book < ApplicationRecord
-
-  before_save { self.materials = materials.downcase.capitalize.gsub(/,(?![ ])/, ', ') }
+  before_save :normalize_materials
 
   has_and_belongs_to_many :category
   has_and_belongs_to_many :authors
@@ -20,14 +19,28 @@ class Book < ApplicationRecord
   scope :low_price, -> { order(price: :asc) }
   scope :high_price, -> { order(price: :desc) }
 
-  SORT_TITLES = {:latest => "Newest first", :title_asc => "A - Z", :title_desc => "Z - A",
-                 :low_price => "Price: low to high", :high_price => "Price: high to low", :popular => "Popular first"}.freeze
+  SORT_TITLES = {
+    :latest => 'Newest first',
+    :title_asc => 'A - Z',
+    :title_desc => 'Z - A',
+    :low_price => 'Price: low to high',
+    :high_price => 'Price: high to low',
+    :popular => 'Popular first'
+    }.freeze
 
   def self.popular
-    joins(:order_items).group('id').order("SUM(order_items.quantity) desc")
+    joins(:order_items).group('id').order('SUM(order_items.quantity) desc')
   end
 
   def in_stock?
     quantity > 0
+  end
+
+  private
+
+  def normalize_materials
+    if materials?
+      self.materials = materials.downcase.capitalize.gsub(/,(?![ ])/, ', ')
+    end
   end
 end
