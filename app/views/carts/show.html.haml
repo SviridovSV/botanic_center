@@ -1,5 +1,5 @@
-- if @order_items.any?
-  %main.container.general-main-wrap
+%main.container.general-main-wrap
+  - if @order_items.any?
     %h1.general-title-margin Cart
     = render "mobile_items"
     = render "items"
@@ -20,19 +20,19 @@
                 %td
                   %p.font-16 Subtotal:
                 %td
-                  %p.font-16= number_to_currency(current_order.subtotal, unit: '€')
+                  %p.font-16= shifting_price_to_currency(@order.subtotal)
               %tr
                 %td
                   %p.font-16 Coupon:
                 %td
-                  %p.font-16= number_to_currency(current_order.coupon, unit: '€')
+                  %p.font-16= shifting_price_to_currency(@order.coupon)
               %tr
                 %td
                   %strong.font-18 Order Total:
                 %td
-                  %strong.font-18= number_to_currency(current_order.total_price, unit: '€')
+                  %strong.font-18= shifting_price_to_currency(@order.total_price)
             = button_to "Checkout", checkouts_path, method: :get, class: "btn btn-default mb-20 visible-xs-inline-block"
     = button_to "Checkout", checkouts_path, method: :get, class: "btn btn-default mb-20 hidden-xs center-block"
-- else
-  %h1.text-center You did not add to cart anything.
-  %h1.text-center= link_to "Go to Shop", category_path(1), class: 'in-gold-500'
+  - else
+    %h1.text-center You did not add to cart anything.
+    %h1.text-center= link_to "Go to Shop", category_path(1), class: 'in-gold-500'

@@ -557,6 +557,27 @@
 }
 
 //Custom
+.desc {
+  min-height: 150px;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  flex: none;
+}
+
+header {
+  flex: none;
+}
 
 input#cvv {
   -webkit-text-security: disc;

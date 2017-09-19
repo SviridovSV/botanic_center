@@ -7,8 +7,8 @@
       %p.general-title= link_to "#{item.book.title}", item.book
       %p.in-grey-600.font-weight-light= truncate(item.book.description, length: 150)
     %td
-      %span.font-16.in-gold-500= shifting_price_to_currency(item.book)
+      %span.font-16.in-gold-500= shifting_price_to_currency(item.book.price)
     %td
       %span.ml-30= item.quantity
     %td
-      %span.font-16.in-gold-500= number_to_currency(item.total_price, unit: '€')
+      %span.font-16.in-gold-500= shifting_price_to_currency(item.total_price)

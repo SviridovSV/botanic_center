@@ -2,13 +2,12 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  devise_for :users, controllers: {
-    registrations:      'registrations',
-    sessions:           'sessions',
-    omniauth_callbacks: 'users/omniauth_callbacks'
-  }
+  devise_for :users, controllers: { registrations:      'registrations',
+                                    sessions:           'sessions',
+                                    omniauth_callbacks: 'users/omniauth_callbacks'}
+
   devise_scope :user do
-    put 'address_settings', to 'registrations#address_settings'
+    put 'address_settings', to: 'registrations#address_settings'
   end
 
   root 'home_page#index'

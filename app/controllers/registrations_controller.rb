@@ -3,11 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     @address = Address.find_by(user_id: params[:address][:user_id],
                                address_type: params[:address][:address_type])
-    if @address
-      update_address
-    else
-      create_address
-    end
+    @address ? update_address : create_address
   end
 
   private

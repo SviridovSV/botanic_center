@@ -28,5 +28,5 @@
     %span.help-block= address_error_message("billing", :сountr)
   .form-group{class: "#{"has-error" if address_has_error?("billing", :phone)}"}
     %label.control-label.font-weight-light{for: "phone"} Phone
-    = text_field_tag "billing[phone]", "#{address_saved_value("billing", :phone)}", placeholder: "Example +355 66 123 4567", id: "phone", class: "form-control"
+    = text_field_tag "billing[phone]", "#{address_saved_value("billing", :phone)}", placeholder: "Example +355661234567", id: "phone", class: "form-control"
     %span.help-block= address_error_message("billing", :phone)

@@ -8,10 +8,14 @@ class User < ApplicationRecord
   has_many :orders
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    user = where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
+      user.password = Devise.friendly_token[0, 20]
     end
+    return user if user.get_address('billing')
+    user.addresses.create(first_name: auth.info.first_name,
+                          last_name: auth.info.last_name,
+                          address_type: 'billing')
   end
 
   def get_address(type)

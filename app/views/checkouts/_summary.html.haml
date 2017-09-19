@@ -2,14 +2,14 @@
   %td
     %p.font-16 Item Total:
   %td
-    %p.font-16= number_to_currency(@order.subtotal, unit: '€')
+    %p.font-16= shifting_price_to_currency(@order.subtotal)
 %tr
   %td
     %p.font-16 Shipping:
   %td
-    %p.font-16= number_to_currency(@order.delivery.price, unit: '€') if @order.delivery.present?
+    %p.font-16= shifting_price_to_currency(@order.delivery.price) if @order.delivery.present?
 %tr
   %td
     %strong.font-18 Order Total:
   %td
-    %strong.font-18= number_to_currency(@order.total_price, unit: '€')
+    %strong.font-18= shifting_price_to_currency(@order.total_price)

@@ -5,10 +5,10 @@
         = image_tag @book.picture, class: 'img-responsive', alt: "design-book"
   .col-sm-6
     %h1.mt-res-0= @book.title
-    %p.in-grey-600.small= book_authors(@book)
+    %p.in-grey-600.small= @book.authors_list
     .row
       .col-xs-12.col-md-4
-        %p.h1.in-gold-500.mt-10= shifting_price_to_currency(@book)
+        %p.h1.in-gold-500.mt-10= shifting_price_to_currency(@book.price)
       = form_for current_order.order_items.build, remote: true do |f|
         = f.hidden_field :book_id, value: book.id
         .col-xs-5.col-md-3
@@ -24,7 +24,7 @@
       .card
         %p Description
         %p.in-grey-600.small.line-height-2{id: "short_desc"}
-          = book_description(@book)
+          = @book.short_description
         %p.in-grey-600.small.line-height-2{style: "display: none", id: "full_desc"}
           = @book.description
           = link_to "Hide", "#", class: "in-gold-500 ml-10", id: "hide_link"
@@ -36,7 +36,7 @@
     - if @book.dimensions.present?
       .card
         .clearfix
-          %p.general-item-info.pull-right= book_dimensions(@book)
+          %p.general-item-info.pull-right= @book.dimensions_list
           %p.break-word Dimensions
     - if @book.materials.present?
       .card

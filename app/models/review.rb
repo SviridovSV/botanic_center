@@ -11,15 +11,15 @@ class Review < ApplicationRecord
     state :approved, :rejected
 
     event :approve do
-      transitions :from => :unprocessed, :to => :approved
+      transitions from: :unprocessed, to: :approved
     end
 
     event :reject do
-      transitions :from => :unprocessed, :to => :rejected
+      transitions from: :unprocessed, to: :rejected
     end
 
     event :unprocess do
-      transitions :from => [:rejected, :approved], :to => :unprocessed
+      transitions from: [:rejected, :approved], to: :unprocessed
     end
   end
 
@@ -27,8 +27,4 @@ class Review < ApplicationRecord
   validates :content, length: { maximum: 500 }
   validates :title, length: { maximum: 80 }
   validates :rating, numericality: { greater_than: 0, less_than_or_equal_to: 5 }
-
-  def state
-    status
-  end
 end

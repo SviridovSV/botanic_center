@@ -28,7 +28,7 @@
       %span.help-block= address_error_message("shipping", :сountry)
     .form-group{class: "#{"has-error" if address_has_error?("shipping", :phone)}"}
       %label.control-label.font-weight-light{for: "phone"} Phone
-      = text_field_tag "shipping[phone]", "#{address_saved_value("shipping", :phone)}", placeholder: "Example +355 66 123 4567", id: "phone", class: "form-control"
+      = text_field_tag "shipping[phone]", "#{address_saved_value("shipping", :phone)}", placeholder: "Example +355661234567", id: "phone", class: "form-control"
       %span.help-block= address_error_message("shipping", :phone)
   .form-group.checkbox
     %label.font-weight-light.pl-0

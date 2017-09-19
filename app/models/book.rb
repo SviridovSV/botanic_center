@@ -20,12 +20,12 @@ class Book < ApplicationRecord
   scope :high_price, -> { order(price: :desc) }
 
   SORT_TITLES = {
-    :latest => 'Newest first',
-    :title_asc => 'A - Z',
-    :title_desc => 'Z - A',
-    :low_price => 'Price: low to high',
-    :high_price => 'Price: high to low',
-    :popular => 'Popular first'
+    latest: 'Newest first',
+    title_asc: 'A - Z',
+    title_desc: 'Z - A',
+    low_price: 'Price: low to high',
+    high_price: 'Price: high to low',
+    popular: 'Popular first'
     }.freeze
 
   def self.popular
@@ -39,8 +39,7 @@ class Book < ApplicationRecord
   private
 
   def normalize_materials
-    if materials?
-      self.materials = materials.downcase.capitalize.gsub(/,(?![ ])/, ', ')
-    end
+    return unless materials?
+    self.materials = materials.downcase.capitalize.gsub(/,(?![ ])/, ', ')
   end
 end

@@ -1,5 +1,5 @@
-- if current_user.orders.any?
-  %main.container.general-main-wrap
+%main.container.general-main-wrap
+  - if current_user.orders.any?
     %h1.mt-0.mb-25 My Orders
     = render "sort_dropdown"
     .visible-xs
@@ -18,6 +18,6 @@
               %span.in-grey-600 Total
         %tbody
           = render "orders"
-- else
-  %h1.text-center You do not have any orders.
-  %h1.text-center= link_to "Go to Shop", category_path(1), class: 'in-gold-500'
+  - else
+    %h1.text-center You do not have any orders.
+    %h1.text-center= link_to "Go to Shop", category_path(1), class: 'in-gold-500'
