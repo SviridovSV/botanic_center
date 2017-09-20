@@ -8,7 +8,7 @@ RSpec.describe OrderItem, type: :model do
   end
 
   describe 'Validations' do
-    [:quantity, :order_id, :book_id].each do |field|
+    [:quantity, :book_id].each do |field|
       it { expect(@order_item).to validate_presence_of(field) }
     end
     it { expect(@order_item).to validate_numericality_of(:quantity).is_greater_than(0) }

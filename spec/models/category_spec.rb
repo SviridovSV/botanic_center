@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Category, type: :model do
   describe 'Validations' do
     it { should validate_presence_of(:title) }
-    it { should validate_uniqueness_of (:title) }
+    it { should validate_uniqueness_of(:title) }
   end
 
   describe 'Associations' do
@@ -13,8 +13,8 @@ RSpec.describe Category, type: :model do
   describe '.home_page_category' do
     let(:params) { Hash.new }
     before do
-      @category = Category.create(title: 'test')
-      @default_category = Category.create(title: Category::HOME_GATEGORY)
+      @category = create(:category)
+      @default_category = create(:category, title: Category::HOME_GATEGORY)
     end
 
     it 'return category from params' do

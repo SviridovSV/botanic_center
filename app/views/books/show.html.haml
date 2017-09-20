@@ -10,7 +10,7 @@
       = render @book.reviews
     - if can? :create, Review
       %h3 Write a Review
-      =render partial: "reviews/review_form", locals: {book: @book}
+      =render partial: "reviews/reviews_form", locals: {book: @book}
     - else
       %p.text-center.h1
         To leave a review for this book
