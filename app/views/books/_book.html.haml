@@ -9,17 +9,20 @@
     .row
       .col-xs-12.col-md-4
         %p.h1.in-gold-500.mt-10= shifting_price_to_currency(@book.price)
-      = form_for current_order.order_items.build, remote: true do |f|
-        = f.hidden_field :book_id, value: book.id
-        .col-xs-5.col-md-3
-          .input-group.general-position
-            %a.input-link.quantity-minus{href: "#"}
-              %i.fa.fa-minus.line-height-40
-            = f.text_field :quantity, value: 1, class: 'form-control quantity-input'
-            %a.input-link.quantity-plus{href: "#"}
-              %i.fa.fa-plus.line-height-40
-        .col-xs-7.col-md-5
-          = f.submit "Add to Cart", class: "btn btn-default pull-right general-position #{"disabled" unless book.in_stock?}"
+      - if @book.in_current_order?
+        %button.btn.btn-default.pull-right.general-position.disabled Already in a cart
+      - else
+        = form_for current_order.order_items.build, remote: true do |f|
+          = f.hidden_field :book_id, value: book.id
+          .col-xs-5.col-md-3
+            .input-group.general-position#buttons
+              %a.input-link.quantity-minus{href: "#"}
+                %i.fa.fa-minus.line-height-40
+              = f.text_field :quantity, value: 1, class: 'form-control quantity-input'
+              %a.input-link.quantity-plus{href: "#"}
+                %i.fa.fa-plus.line-height-40
+          .col-xs-7.col-md-5
+            = f.submit "Add to Cart", class: "btn btn-default pull-right general-position #{"disabled" unless book.in_stock?}", id: "add_button"
     - if @book.description.present?
       .card
         %p Description

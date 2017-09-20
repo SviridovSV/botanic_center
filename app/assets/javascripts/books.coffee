@@ -28,3 +28,10 @@ $(document).on "turbolinks:load", ->
         $('.quantity-input').val(old_value - 1)
       return
     return
+
+  $ ->
+    $('#add_button').click (event) ->
+      $('#add_button').addClass('disabled')
+      $('#buttons').toggle(false)
+      return
+    return

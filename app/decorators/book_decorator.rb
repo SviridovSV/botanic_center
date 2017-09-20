@@ -12,4 +12,8 @@ class BookDecorator < Draper::Decorator
   def dimensions_list
     "H: #{dimensions['H']}” x W: #{dimensions['W']}” x D: #{dimensions['D']}”"
   end
+
+  def in_current_order?
+    h.current_order.order_items.map { |item| item.book }.include?(object)
+  end
 end

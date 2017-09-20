@@ -3,10 +3,21 @@ require 'rails_helper'
 RSpec.describe HomePageController, type: :controller do
 
   describe "GET #index" do
-    it "returns http success" do
+    before do
+      @category = create(:category, title: 'Mobile development')
       get :index
-      expect(response).to have_http_status(:success)
+    end
+
+    it 'saves location' do
+      expect(session[:forwarding_url]).to eq(request.original_url)
+    end
+
+    it 'assigns the requested category to @category' do
+      expect(assigns(:category)).to eq @category
+    end
+
+    it 'renders the :show template' do
+      expect(response).to render_template :index
     end
   end
-
 end

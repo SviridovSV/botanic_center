@@ -4,7 +4,7 @@ RSpec.describe Ability, type: :model do
   let(:user) { build(:user) }
   let(:signed_user) { create(:user) }
   let(:signed_user) { create(:user) }
-  let(:admin) { create(:user, :admin) }
+  let(:admin) { create(:admin) }
 
   context "when user is unsigned" do
     subject(:ability) { Ability.new(user) }
