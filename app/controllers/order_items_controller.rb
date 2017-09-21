@@ -9,8 +9,8 @@ class OrderItemsController < ApplicationController
   end
 
   def update
-    @order_item = current_order.order_items.find(params[:id])
-    if params[:operation] == 'minus'
+    @order_item = current_order.order_items.find_by_id(params[:id])
+    if params[:operation] == 'minus' && @order_item
       update_order_item(1)
     elsif @order_item.book.in_stock?
       update_order_item(-1)
@@ -20,9 +20,13 @@ class OrderItemsController < ApplicationController
   end
 
   def destroy
-    @order_item = current_order.order_items.find(params[:id])
-    @order_item.destroy
-    redirect_to cart_path, notice: 'Item deleted.'
+    @order_item = current_order.order_items.find_by_id(params[:id])
+    if @order_item
+      @order_item.destroy
+      redirect_to cart_path, notice: 'Item deleted.'
+    else
+      redirect_to cart_path, alert: 'Item was not found.'
+    end
   end
 
   private
@@ -33,8 +37,8 @@ class OrderItemsController < ApplicationController
 
   def update_order_item(int)
     @order_item.book.quantity += int
-    @order_item.book.save
-    @order_item.update_attributes(quantity: params[:quantity])
+    @order_item.quantity = params[:quantity]
+    @order_item.save
     redirect_to cart_path, notice: 'Item updated.'
   end
 end

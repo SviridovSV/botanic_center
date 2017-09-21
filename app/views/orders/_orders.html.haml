@@ -7,4 +7,4 @@
     %td
       %span.font-16.in-grey-900.font-weight-light= order_state_title(order.state)
     %td
-      %strong.font-16= number_to_currency(order.total_price, unit: '€')
+      %strong.font-16= shifting_price_to_currency(order.total_price)

@@ -46,6 +46,7 @@ class CheckoutsController < ApplicationController
       @order.delivery_id = params[:delivery]
       render_wizard @order
     else
+      flash.now[:alert] = 'You have to choose delivery.'
       render_wizard
     end
   end

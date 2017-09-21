@@ -1,8 +1,9 @@
 FactoryGirl.define do
   factory :review do
     book
-    content 'Review'
+    content 'Review text'
     title 'title'
-    rating 5
+    rating 4
+    status 'approved'
   end
 end

@@ -3,7 +3,7 @@
     %li.dropdown
       %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} Home
       %ul.dropdown-menu
-        - categories_list.find_each(start: 2) do |category|
+        - categories_list.find_each do |category|
           %li
             = link_to root_path(category_id: category.id) do
               = category.title

@@ -5,7 +5,7 @@
     %li
       %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"} Home
       %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
-        - categories_list.find_each(start: 2) do |category|
+        - categories_list.find_each do |category|
           %li
             = link_to root_path(category_id: category.id), class: "collapse-link" do
               = category.title

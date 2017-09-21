@@ -88,5 +88,15 @@ RSpec.describe OrderItemsController, type: :controller do
       expect(response).to redirect_to cart_path
       expect(flash[:notice]).to be_present
     end
+
+    it 'not saves order item' do
+      expect{ delete :destroy, params: { id: 100 } }.not_to change(OrderItem, :count)
+    end
+
+    it 'redirects to the cart with alert' do
+      delete :destroy, params: { id: 100 }
+      expect(response).to redirect_to cart_path
+      expect(flash[:alert]).to be_present
+    end
   end
 end

@@ -3,7 +3,7 @@ class OrderItem < ApplicationRecord
   after_destroy :increase_book_quantity
 
   belongs_to :order
-  belongs_to :book
+  belongs_to :book, autosave: true
 
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :book_id, presence: true
@@ -30,20 +30,17 @@ class OrderItem < ApplicationRecord
   end
 
   def order_present
-    if order.nil?
-      errors.add(:order, 'is not a valid order.')
-    end
+    return if order
+    errors.add(:order, 'is not a valid order.')
   end
 
   def book_quantity
-    if book.quantity < quantity
-      errors.add(:order_item, 'is out of stock')
-    end
+    return unless book.quantity < quantity
+    errors.add(:order_item, 'is out of stock.')
   end
 
   def order_item_uniq
-    if order.order_items.find_by_book_id(book.id)
-      errors.add(:order_item, 'is already in a cart')
-    end
+    return unless order.order_items.find_by_book_id(book.id)
+    errors.add(:order_item, 'is already in cart.')
   end
 end
