@@ -8,7 +8,7 @@ feature 'Sign up' do
     expect {
       visit root_path
       click_link('Sign up', match: :first)
-      fill_in 'Enter Email', with: new_user.email
+      fill_in 'Enter your email', with: new_user.email
       fill_in 'Password', with: new_user.password
       fill_in 'Confirm Password', with: new_user.password
       click_button 'Sign up'
@@ -23,7 +23,7 @@ feature 'Sign up' do
   scenario 'invalid data' do
     expect {
       visit new_user_registration_path
-      fill_in 'Enter Email', with: new_user.email
+      fill_in 'Enter your email', with: new_user.email
       click_button 'Sign up'
     }.not_to change(User, :count)
 

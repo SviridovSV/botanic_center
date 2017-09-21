@@ -33,7 +33,7 @@ feature 'Confirm step' do
 
   scenario 'redirect to catalog' do
     category = create(:category)
-    click_link('Back to Store')
+    click_link('Go to Shop')
     expect(current_path).to eq(category_path(category.id))
   end
 end

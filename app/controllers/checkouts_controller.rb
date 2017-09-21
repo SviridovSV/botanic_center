@@ -46,12 +46,12 @@ class CheckoutsController < ApplicationController
       @order.delivery_id = params[:delivery]
       render_wizard @order
     else
-      flash.now[:alert] = 'You have to choose delivery.'
+      flash.now[:alert] = I18n.t('flash.delivery_alert')
       render_wizard
     end
   end
 
   def check_empty_cart
-    redirect_to cart_path, alert: 'Cart is empty' unless current_order.order_items.any?
+    redirect_to cart_path, I18n.t('flash.empty_cart') unless current_order.order_items.any?
   end
 end

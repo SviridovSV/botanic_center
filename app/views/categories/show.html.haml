@@ -1,5 +1,5 @@
 %main.container
-  %h1.general-title-margin Сatalog
+  %h1.general-title-margin= t('catalog')
   .hidden-xs.clearfix
     .pull-right
       = render partial: "sort_dropdown", locals: {width: 240}
@@ -10,7 +10,7 @@
             = category.title
             %span.badge.general-badge= category.books.count
   .mb-40.visible-xs
-    %p.in-grey-600.small.mb-10 Filter by category
+    %p.in-grey-600.small.mb-10= t('category_filter')
     .dropdown.mb-20
       %a.dropdown-toggle.dropdown-btn.width-100{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
         = @category.title
@@ -19,7 +19,7 @@
         - categories_list.each do |category|
           %li
             = link_to category.title, category_path(category, sort_type: params[:sort_type])
-    %p.in-grey-600.small.mb-10 Sort by
+    %p.in-grey-600.small.mb-10= t('sort_by')
     = render partial: "sort_dropdown", locals: {width: 100}
   .mb-120
     - @sorted_books.each_slice(4) do |book_row|

@@ -47,11 +47,11 @@ feature 'User settings' do
 
     scenario 'show flash messages when valid data' do
       within '#edit_user', match: :first do
-        fill_in 'Enter Email', with: 'maxbanan@gmail.com'
+        fill_in 'Enter new email', with: 'maxbanan@gmail.com'
         click_button('Save')
       end
 
-      expect(page).to have_field('Enter Email', with: 'maxbanan@gmail.com')
+      expect(page).to have_field('Enter new email', with: 'maxbanan@gmail.com')
       expect(page).to have_content('Your account has been updated successfully.')
     end
 
@@ -66,8 +66,8 @@ feature 'User settings' do
 
   scenario 'delete account', js: true do
     visit edit_user_registration_path(tab: :privacy)
-    expect(page).to have_button('Please Remove My Account', disabled: true)
+    expect(page).to have_button('Remove Account', disabled: true)
     find('.checkbox-text').click
-    expect(page).to have_button('Please Remove My Account', disabled: false)
+    expect(page).to have_button('Remove Account', disabled: false)
   end
 end

@@ -1,8 +1,8 @@
 %main.container.general-main-wrap
   = render "checkout_status"
   .text-center.mb-40
-    %h3.general-subtitle Thank You for your Order!
-    %p.font-weight-light= "An order confirmation has been sent to " + @order.user.email
+    %h3.general-subtitle= t('thanks')
+    %p.font-weight-light= t('order_confirmation') + @order.user.email
   .row.mb-20
     .col-sm-6
       .visible-xs
@@ -28,19 +28,19 @@
       %thead
         %tr
           %th
-            %span.in-grey-600 Book
+            %span.in-grey-600= t('product')
           %th.col-method
           %th
-            %span.in-grey-600 Price
+            %span.in-grey-600= t('price')
           %th
-            %span.in-grey-600 Quantity
+            %span.in-grey-600= t('quantity')
           %th
-            %span.in-grey-600 Total
+            %span.in-grey-600= t('total')
       %tbody
         = render "items"
   .text-center.general-text-right
-    %p.in-gold-500.font-18 Order Summary
+    %p.in-gold-500.font-18= t('summary')
     %table.general-summary-table.general-summary-table-right.general-text-right
       = render "summary"
   .text-center
-    = link_to "Back to Store", category_path(1), class: "btn btn-default mb-20"
+    = link_to t('go_shop'), category_path(1), class: "btn btn-default mb-20"

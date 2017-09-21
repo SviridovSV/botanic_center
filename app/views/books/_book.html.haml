@@ -10,7 +10,7 @@
       .col-xs-12.col-md-4
         %p.h1.in-gold-500.mt-10= shifting_price_to_currency(@book.price)
       - if @book.in_current_order?
-        %button.btn.btn-default.pull-right.general-position.disabled Already in a cart
+        %button.btn.btn-default.pull-right.general-position.disabled= t('already_in_cart')
       - else
         = form_for current_order.order_items.build, remote: true do |f|
           = f.hidden_field :book_id, value: book.id
@@ -22,31 +22,31 @@
               %a.input-link.quantity-plus{href: "#"}
                 %i.fa.fa-plus.line-height-40
           .col-xs-7.col-md-5
-            = f.submit "Add to Cart", class: "btn btn-default pull-right general-position #{"disabled" unless book.in_stock?}", id: "add_button"
+            = f.submit t('add_cart'), class: "btn btn-default pull-right general-position #{"disabled" unless book.in_stock?}", id: "add_button"
     - if @book.description.present?
       .card
-        %p Description
+        %p= t('description')
         %p.in-grey-600.small.line-height-2{id: "short_desc"}
           = @book.short_description
         %p.in-grey-600.small.line-height-2{style: "display: none", id: "full_desc"}
           = @book.description
-          = link_to "Hide", "#", class: "in-gold-500 ml-10", id: "hide_link"
+          = link_to t('hide'), "#", class: "in-gold-500 ml-10", id: "hide_link"
     - if @book.year.present?
       .card
         .clearfix
           %p.general-item-info.pull-right= @book.year
-          %p.break-word Year of publication
+          %p.break-word= t('year')
     - if @book.dimensions.present?
       .card
         .clearfix
           %p.general-item-info.pull-right= @book.dimensions_list
-          %p.break-word Dimensions
+          %p.break-word= t('dimensions')
     - if @book.materials.present?
       .card
         .clearfix
           %p.general-item-info.pull-right= @book.materials
-          %p.break-word Materials
+          %p.break-word t('materials')
     .card
       .clearfix
         %p.general-item-info.pull-right= @book.quantity
-        %p.break-word Quantity
+        %p.break-word t('quantity')

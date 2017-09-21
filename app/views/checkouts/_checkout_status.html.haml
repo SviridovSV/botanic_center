@@ -1,4 +1,4 @@
-%h1.general-title-margin Checkout
+%h1.general-title-margin= t('checkout')
 %ul.steps.list-inline
   - wizard_steps.each_with_index do |stepp, index|
     %li.step-divider{style: "display:#{index == 0 ? 'none' : ''}"}

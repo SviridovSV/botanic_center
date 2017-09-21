@@ -2,14 +2,14 @@
   %table.table.table-hover
     %tr.no-hover
       %th.col-pic.pl-0
-        %span.in-grey-600 Product
+        %span.in-grey-600= t('product')
       %th.col-title
       %th.col-price
-        %span.in-grey-600 Price
+        %span.in-grey-600= t('price')
       %th.col-quantity
-        %span.in-grey-600 Quantity
+        %span.in-grey-600= t('quantity')
       %th.col-total
-        %span.in-grey-600 SubTotal
+        %span.in-grey-600= t('subtotal')
       %th.col-close
     - @order_items.each do |item|
       %tr
@@ -31,5 +31,5 @@
         %td
           %span.font-16.in-gold-500= shifting_price_to_currency(item.total_price)
         %td
-          = link_to item, method: :delete, data: {confirm: "Are you sure?"}, class: "close general-cart-close", 'aria-label': 'Close' do
+          = link_to item, method: :delete, data: {confirm: t('sure?')}, class: "close general-cart-close", 'aria-label': 'Close' do
             %span{'aria-hidden': "true"} &times;

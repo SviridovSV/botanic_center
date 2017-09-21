@@ -20,7 +20,7 @@
                   = form_for current_order.order_items.build, remote: true do |f|
                     = f.hidden_field :book_id, value: book.id
                     = f.hidden_field :quantity, value: 1
-                    = f.button "Buy now", class: "btn btn-primary #{"disabled" unless book.in_stock?}"
+                    = f.button t('buy_now'), class: "btn btn-primary #{"disabled" unless book.in_stock?}"
     %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
       %span.icon-prev{'aria-hidden': "true"}
       %span.sr-only Previous

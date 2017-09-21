@@ -4,9 +4,9 @@ class ReviewsController < ApplicationController
   def create
     @review = current_user.reviews.build(review_params)
     if @review.save
-      redirect_to @review.book, notice: "Thanks for Review. It will be published as soon as Admin will approve it."
+      redirect_to @review.book, notice: I18n.t('flash.review_created')
     else
-      redirect_to @review.book, alert: "Review form contains mistakes."
+      redirect_to @review.book, alert: I18n.t('flash.review_failed')
     end
   end
 

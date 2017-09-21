@@ -9,7 +9,7 @@ feature 'Log in' do
   scenario 'log in as persisted user' do
     visit root_path
     click_link('Log in', match: :first)
-    fill_in 'Enter Email', with: user.email
+    fill_in 'Enter your email', with: user.email
     fill_in 'Password', with: user.password
     click_button 'Log in'
 
@@ -22,7 +22,7 @@ feature 'Log in' do
 
   scenario 'log in as admin' do
     visit new_user_session_path
-    fill_in 'Enter Email', with: admin.email
+    fill_in 'Enter your email', with: admin.email
     fill_in 'Password', with: admin.password
     click_button 'Log in'
 

@@ -1,33 +1,117 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  home: "Home"
+  shop: "Shop"
+  account: "My account"
+  orders: "Orders"
+  settingsad: "Settings"
+  admin_panel: "Admin panel"
+  signup: "Sign up"
+  login: "Log in"
+  logout: "Log out"
+  buy_now: "Buy now"
+  best_sellers: "Best Sellers"
+  get_start: "Get Started with "
+  welcome: "Welcome to our amazing Bookstore!"
+  store_info: "We pore through hundreds of new books
+               each month and select the five best we
+               can find to share with our members."
+  forgot: "Forgot your password?"
+  instruction: "We'll email you instructions on how to reset it"
+  email_instruction: "Email Instructions"
+  email_placeholder: "Enter your email"
+  password: "Password"
+  confirm_password: "Confirm Password"
+  old_password: "Old Password"
+  new_password: "New Password"
+  cancel: "Cancel"
+  or: "or"
+  dont_have_account: "Don’t have an Account?"
+  have_account: "Have an Account?"
+  remember: "Remember me"
+  catalog: "Catalog"
+  category_filter: "Filter by category"
+  sort_by: "Sort by"
+  view_more: "View More"
+  back_page: "Back page"
+  back: "Back to results"
+  add_cart: "Add to Cart"
+  write_review: "Write a Review"
+  already_in_cart: "Already in a cart"
+  description: "Description"
+  year: "Year of publication"
+  dimensions: "Dimensions"
+  materials: "Materials"
+  quantity: "Quantity"
+  product: "Product"
+  price: "Price"
+  subtotal: "Subtotal"
+  sure?: "Are you sure?"
+  cart: "Cart"
+  coupon_code: "Enter Your Coupon Code"
+  update_cart: "Update cart"
+  coupon: "Coupon"
+  summary: "Order Summary"
+  total: "Order Total"
+  item_total: "Item total:"
+  checkout: "Checkout"
+  empty_cart: "You did not add to cart anything."
+  go_shop: "Go to Shop"
+  address: "Address"
+  privacy: "Privacy"
+  billing: "Billing Address"
+  shipping: "Shipping Address"
+  email: "Email"
+  new_email: "Enter new email"
+  save: "Save"
+  remove_account: "Remove Account"
+  confirm_remove: "I understand that all data will be lost"
+  first_name: "First Name"
+  last_name: "Last Name"
+  city: "City"
+  zip: "Zip"
+  country: "Country"
+  phone: "Phone"
+  phone_placeholder: "Example +355661234567"
+  title: "Title"
+  review: "Review"
+  post: "Post"
+  reviewer: "Verified Reviewer"
+  continue_shopping: "Continue shopping"
+  payment_info: "Payment Information"
+  shipments: "Shipments"
+  dont_have_orders: "You do not have any orders."
+  status: "Status"
+  completed_at: "Completed at"
+  number: "Number"
+  my_orders: " My Orders"
+  save_and_continue: "Save and Continue"
+  required_fields: "all fields are required"
+  thanks: "Thank You for your Order!"
+  order_confirmation: "An order confirmation has been sent to "
+  delivery: "Delivery"
+  credit_card: "Credit Card"
+  card_number: "Card Number"
+  name_on_card: "Name on Card"
+  mm_yy: "MM / YY"
+  cvv: "CVV"
+  cvv_hint: "3-digit security code, usually found on the back of your card.
+             American Express cards has 4-digit code, located on the front"
+  place_order: "Place Order"
+  use_billing: "Use Billing Adress"
+  edit: "edit"
+  days: "Days"
+  method: "Method"
+  flash:
+    coupon_activate: "Coupon was activated."
+    wrong_coupon: "Wrong coupon code."
+    delivery_alert: "You have to choose delivery."
+    empty_cart: "Cart is empty."
+    out_of_stock: "Item is out of stock."
+    deleted: "Item deleted."
+    updated: "Item updated."
+    was_not_found: "Item was not found."
+    account_updated: "Your account has been updated successfully."
+    review_created: "Thanks for Review. It will be published as soon as Admin will approve it."
+    review_failed: "Review form contains mistakes."
+    facebook_success: "Facebook signed in successfully."
+    facebook_failed: "Facebook log in failed"

@@ -1,13 +1,13 @@
 = render "carousel"
 .container
   .jumbotron.text-center.mb-0
-    %h2.h1 Welcome to our amazing Bookstore!
+    %h2.h1= t('welcome')
     .mb-res-50
-      %p We pore through hundreds of new books each month and select the five best we can find to share with our members.
+      %p.in-grey-600= t('store_info')
     = link_to @category, class: "btn btn-default" do
-      Get Started
+      = t('get_start')
   .mb-35
-    %h3= "Best Sellers" if @best_sellers.any?
+    %h3= t('best_sellers') if @best_sellers.any?
     .row
       - @best_sellers.each do |book|
         = render partial: "shared/book", locals: {book: book}

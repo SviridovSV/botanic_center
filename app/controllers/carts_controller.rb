@@ -9,9 +9,9 @@ class CartsController < ApplicationController
     @order = current_order
     if @coupon
       @order.update_attributes(coupon: @coupon.discount)
-      redirect_to cart_path, notice: 'Coupon was activated.'
+      redirect_to cart_path, notice: I18n.t('flash.coupon_activate')
     else
-      redirect_to cart_path, alert: 'Wrong coupon code.'
+      redirect_to cart_path, alert: I18n.t('flash.wrong_coupon')
     end
   end
 end

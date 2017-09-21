@@ -6,4 +6,4 @@
 -#    per_page:      number of items to fetch per page
 -#    remote:        data-remote
 %span.prev
-  = link_to_unless current_page.first?, "Back page", url, class: "btn btn-primary", rel: 'prev', remote: remote
+  = link_to_unless current_page.first?, t('back_page'), url, class: "btn btn-primary", rel: 'prev', remote: remote
