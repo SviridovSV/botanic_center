@@ -6,9 +6,9 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :addresses, dependent: :destroy
 
-  belongs_to :user
-  belongs_to :delivery
-  belongs_to :credit_card
+  belongs_to :user, optional: true
+  belongs_to :delivery, optional: true
+  belongs_to :credit_card, optional: true
 
   SORT_TITLES = {all: 'All', in_progress: 'In Progress', in_queuen: 'Waiting for processing',
                  in_delivery: 'In Delivery', delivered: 'Delivered', canceled: 'Canceled'}.freeze

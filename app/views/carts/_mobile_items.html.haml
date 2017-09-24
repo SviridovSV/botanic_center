@@ -20,7 +20,7 @@
               = link_to order_item_path(item, quantity: "#{item.quantity - 1}", operation: :minus), method: :patch, class: "#{'not-active' if item.quantity <= 1} input-link" do
                 %i.fa.fa-minus.line-height-40
               %input.form-control.quantity-input{type: "text", value: "#{item.quantity}", disabled: true}
-             = link_to order_item_path(item, quantity: "#{item.quantity + 1}"), method: :patch, class: "input-link" do
+              = link_to order_item_path(item, quantity: "#{item.quantity + 1}"), method: :patch, class: "input-link" do
                 %i.fa.fa-plus.line-height-40
         %tr
           %td

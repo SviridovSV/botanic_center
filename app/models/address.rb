@@ -1,6 +1,6 @@
 class Address < ApplicationRecord
-  belongs_to :order
-  belongs_to :user
+  belongs_to :order, optional: true
+  belongs_to :user, optional: true
 
   validates :first_name, :last_name, :address_name,
             :city, :zip, :country, :phone, presence: true, unless: :user_id?

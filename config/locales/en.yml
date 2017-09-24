@@ -41,7 +41,7 @@ en:
   year: "Year of publication"
   dimensions: "Dimensions"
   materials: "Materials"
-  quantity: "Quantity"
+  quantity: Quantity
   product: "Product"
   price: "Price"
   subtotal: "Subtotal"

@@ -87,9 +87,9 @@ RSpec.describe CheckoutsController, type: :controller do
 
         it 'saves address' do
           expect {
-            put :update, params: { id: :address, billing: attributes_for(:address,
+                  put :update, params: { id: :address, billing: attributes_for(:address,
                                                           address_type: 'both') }
-                }.to change(Address, :count).by(1)
+                 }.to change(order.addresses, :length).by(1)
         end
 
         it 'redirect to :delivery step' do

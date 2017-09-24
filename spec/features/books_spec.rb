@@ -18,6 +18,7 @@ feature 'Book' do
 
   scenario 'can show and hide description', js: true do
     click_link('Read More')
+    wait_for_ajax
     expect(page).to have_content("#{@book.description}")
     expect(page).to have_content('Hide')
 
