@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Log in' do
-  background { create(:category, title: Category::HOME_GATEGORY) }
+  background { create(:category, title: Category::MAIN_GATEGORY) }
   given(:user) { create(:user) }
   given(:admin) { create(:admin) }
 

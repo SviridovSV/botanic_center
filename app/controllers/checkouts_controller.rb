@@ -52,6 +52,6 @@ class CheckoutsController < ApplicationController
   end
 
   def check_empty_cart
-    redirect_to cart_path, I18n.t('flash.empty_cart') unless current_order.order_items.any?
+    redirect_to cart_path, alert: I18n.t('flash.empty_cart') unless current_order.order_items.any?
   end
 end

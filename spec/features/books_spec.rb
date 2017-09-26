@@ -35,7 +35,7 @@ feature 'Book' do
     expect(page).to have_content(review.content)
     expect(page).to have_content('Reviews (1)')
     expect(page).to have_content("Verified Reviewer #{@user.email}")
-    expect(page).to have_content('In order to leave a review Log in')
+    expect(page).to have_content('To leave a review for this book Log in')
   end
 
   context 'manage review' do

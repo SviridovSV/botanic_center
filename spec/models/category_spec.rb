@@ -14,7 +14,7 @@ RSpec.describe Category, type: :model do
     let(:params) { Hash.new }
     before do
       @category = create(:category)
-      @default_category = create(:category, title: Category::HOME_GATEGORY)
+      @default_category = create(:category, title: Category::MAIN_GATEGORY)
     end
 
     it 'return category from params' do
@@ -23,7 +23,7 @@ RSpec.describe Category, type: :model do
     end
 
     it 'return home category if no category in params' do
-      expect(Category.home_page_category(params).title).to eq(Category::HOME_GATEGORY)
+      expect(Category.home_page_category(params).title).to eq(Category::MAIN_GATEGORY)
     end
   end
 end

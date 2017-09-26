@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Sign up' do
-  background { create(:category, title: Category::HOME_GATEGORY) }
+  background { create(:category, title: Category::MAIN_GATEGORY) }
   given(:new_user) { build(:user) }
 
   scenario 'should add new user' do

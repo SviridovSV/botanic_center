@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Catalog' do
   background do
     @book = create(:book)
-    @category1 = create(:category, title: Category::HOME_GATEGORY, books: [@book])
+    @category1 = create(:category, title: Category::MAIN_GATEGORY, books: [@book])
     @category2 = create(:category, title: 'Category2')
   end
 
@@ -17,8 +17,8 @@ feature 'Catalog' do
 
   scenario 'change category' do
     visit category_path(@category1.id)
-    within("ul.categories-list") do
-      click_link @category2.title
+    within('.list-inline', match: :first) do
+      find_link(@category2.title).click
     end
     expect(current_path).to eq category_path(@category2.id)
   end
