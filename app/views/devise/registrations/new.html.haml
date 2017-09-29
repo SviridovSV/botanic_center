@@ -1,0 +1,10 @@
+%main.container.general-main-wrap
+  .text-center
+    %h3.general-login-title= t('signup')
+    = link_to user_facebook_omniauth_authorize_path, class: "general-login-icon" do
+      %i.fa.fa-facebook-official
+    %p.general-login-text= t('or')
+  = render 'register_form'
+  %p.general-sign-text.text-center
+    = t('have_account')
+    = link_to t('login'), new_session_path(resource_name), class: 'in-gold-500'

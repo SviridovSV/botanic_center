@@ -1,0 +1,17 @@
+.dropdown
+  %a.dropdown-toggle.dropdown-btn{class: "width-#{width}", href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+    = sort_title
+    %i.fa.fa-angle-down.dropdown-icon
+  %ul.dropdown-menu
+    %li
+      = link_to "A - Z", category_path(@category, sort_type: :title_asc)
+    %li
+      = link_to "Z - A", category_path(@category, sort_type: :title_desc)
+    %li
+      = link_to "Newest first", category_path(@category, sort_type: :latest)
+    %li
+      = link_to "Popular first", category_path(@category, sort_type: :popular)
+    %li
+      = link_to "Price: high to low", category_path(@category, sort_type: :high_price)
+    %li
+      = link_to "Price: low to high", category_path(@category, sort_type: :low_price)

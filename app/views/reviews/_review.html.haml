@@ -1,0 +1,15 @@
+%li.media.card
+  .media-left
+    %span.img-circle.logo-size.logo-empty.media-object= review.user.email[0].capitalize
+  .media-body
+    %div
+      %p.general-message-date.hidden-xs= review.created_at.strftime("%Y/%m/%d")
+      %h4.media-heading.max-240.general-message-name
+        %span.general-message-verified= t('reviewer')
+        = review.user.email
+    .mb-15
+      - review.rating.times do
+        %i.fa.fa-star.rate-star
+      - (5 - review.rating).times do
+        %i.fa.fa-star.rate-star.rate-empty
+    %p= review.content

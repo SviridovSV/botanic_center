@@ -1,0 +1,35 @@
+= form_for(Address.new, url: address_settings_path, html: {method: :put, class: "general-form-md"}) do |f|
+  = f.hidden_field :address_type, value: type
+  = f.hidden_field :user_id, value: current_user.id
+  .visible-xs.visible-sm
+    %h3.general-subtitle.mt-0= t(type)
+  .form-group{class: "#{"has-error" if form_has_error?(type, :first_name)}"}
+    %label.control-label.font-weight-light{for: "firstName"}= t('first_name')
+    = f.text_field :first_name, value: form_saved_value(type, :first_name), placeholder: t('first_name'), id: "firstName", class: "form-control"
+    %span.help-block= form_error_message(type, :first_name)
+  .form-group{class: "#{"has-error" if form_has_error?(type, :last_name)}"}
+    %label.control-label.font-weight-light{for: "lastName"}= t('last_name')
+    = f.text_field :last_name, value: form_saved_value(type, :last_name), placeholder: t('last_name'), id: "lastName", class: "form-control"
+    %span.help-block= form_error_message(type, :last_name)
+  .form-group{class: "#{"has-error" if form_has_error?(type, :address_name)}"}
+    %label.control-label.font-weight-light{for: "address"}= t('address')
+    = f.text_field :address_name, value: form_saved_value(type, :address_name), placeholder: t('address'), id: "address", class: "form-control"
+    %span.help-block= form_error_message(type, :address_name)
+  .form-group{class: "#{"has-error" if form_has_error?(type, :city)}"}
+    %label.control-label.font-weight-light{for: "city"}= t('city')
+    = f.text_field :city, id: "city", value: form_saved_value(type, :city), placeholder: t('city'), class: "form-control"
+    %span.help-block= form_error_message(type, :city)
+  .form-group{class: "#{"has-error" if form_has_error?(type, :zip)}"}
+    %label.control-label.font-weight-light{for: "zip"}= t('zip')
+    = f.text_field :zip, id: "zip", value: form_saved_value(type, :zip), placeholder: t('zip'), class: "form-control"
+    %span.help-block= form_error_message(type, :zip)
+  .form-group{class: "#{"has-error" if form_has_error?(type, :country)}"}
+    %label.control-label.font-weight-light{for: "сountry"}= t('country')
+    = f.select :country, options_for_select(["Ukraine", "USA", "Zimbabwe"], form_saved_value(type, :country)), {}, id: "country", class: "form-control"
+    %span.help-block= form_error_message(type, :country)
+  .form-group.mb-60{class: "#{"has-error" if form_has_error?(type, :phone)}"}
+    %label.control-label.font-weight-light{for: "phone"}= t('phone')
+    = f.text_field :phone, value: form_saved_value(type, :phone), placeholder: t('phone_placeholder'), id: "phone", class: "form-control"
+    %span.help-block= form_error_message(type, :phone)
+  .text-center.general-text-align
+    = f.submit t('save'), class: "btn btn-default"

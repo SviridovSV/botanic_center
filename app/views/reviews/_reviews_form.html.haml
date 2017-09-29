@@ -1,0 +1,14 @@
+.col-sm-8
+  = form_for(book.reviews.build) do |f|
+    = f.hidden_field(:book_id, value: book.id)
+    .form-group
+      - 5.times do |rate|
+        = f.radio_button :rating, "#{rate + 1}"
+    .form-group
+      %label.control-label.font-weight-light{for: "title"}= t('title')
+      = f.text_field :title, placeholder: t('title'), id: "title", class: "form-control"
+    .form-group
+      %label.control-label.font-weight-light{for: "content"}= t('review')
+      = f.text_area :content, placeholder: t('review'), id: "content", class: "form-control", rows: "8"
+    .text-right
+      = f.button t('Post'), class: "btn btn-default mb-20"

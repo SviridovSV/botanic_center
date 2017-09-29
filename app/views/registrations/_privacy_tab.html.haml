@@ -1,0 +1,35 @@
+.row.mb-60
+  .col-sm-5
+    %p.in-gold-500.font-18.mb-25= t('email')
+    = form_for(resource, as: resource_name, url: registration_path(resource_name, tab: :privacy), html: {method: :put, class: "general-form-md"}) do |f|
+      .form-group.mb-35
+        %label.control-label.font-weight-light{for: "email"}= t('new_email')
+        = f.email_field :email, autofocus: true, placeholder: t('new_email'), id: "email", class: "form-control"
+      .general-text-align
+        = f.submit t('save'), class: "btn btn-default mb-35"
+  .col-sm-5.col-sm-offset-1
+    %p.in-gold-500.font-18.mb-25= t('password')
+    = form_for(resource, as: resource_name, url: registration_path(resource_name, tab: :privacy), html: {method: :put, class: "general-form-md, pb-25"}) do |f|
+      = devise_error_messages!
+      .form-group.mb-30
+        %label.control-label.font-weight-light{for: "oldPassword"}= t('old_password')
+        = f.password_field :current_password, autocomplete: "off", placeholder: t('old_password'), id: "oldPassword", class: "form-control"
+      .form-group.mb-30
+        %label.control-label.font-weight-light{for: "password"}= t('new_password')
+        = f.password_field :password, autocomplete: "off", placeholder: t('new_password'), id: "password", class: "form-control"
+      .form-group.mb-40
+        %label.control-label.font-weight-light{for: "confirmPassword"}= t('confirm_password')
+        = f.password_field :password_confirmation, autocomplete: "off", placeholder: t('confirm_password'), id: "control-label", class: "form-control"
+      .general-text-align
+        = f.submit t('save'), class: "btn btn-default mb-10"
+  .col-sm-12
+    .divider-lg-bottom
+    %p.in-gold-500.font-18.mb-25.pt-20= t('remove_account')
+    .general-settings-btn
+      = button_to t('remove_account'), registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-default mb-20", id: "removeBtn", disabled: "disabled"
+    .form-group.checkbox.general-settings-checkbox
+      %label.font-weight-light.pl-0
+        %input.checkbox-input{type: "checkbox", hidden: "true", onchange: "document.getElementById('removeBtn').disabled = !this.checked;"}
+        %span.checkbox-icon
+          %i.fa.fa-check
+        %span.checkbox-text= t('confirm_remove')

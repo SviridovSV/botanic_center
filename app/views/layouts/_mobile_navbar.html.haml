@@ -1,0 +1,31 @@
+.visible-xs
+  %button.close{type: "button", 'aria-label': "Close"}
+    %span{'aria-hidden': "true"} &times;
+  %ul.nav.navbar-nav
+    %li
+      = link_to t('home'), {}, type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"
+      %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
+        - categories_list.find_each do |category|
+          %li
+            = link_to root_path(category_id: category.id), class: "collapse-link" do
+              = category.title
+    %li
+      = link_to t('shop'), category_path(1)
+    - if user_signed_in?
+      %li
+        %a{type: "button", 'data-toggle': "collapse", href: "#account", 'aria-expanded': "false", 'aria-controls': "menu"} My account
+        %ul#account.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
+          %li
+            = link_to t('orders'), orders_path, class: "collapse-link"
+          %li
+            = link_to t('settings'), edit_user_registration_path, class: "collapse-link"
+          - if can? :access, :rails_admin
+            %li
+              = link_to t('admin_panel'), rails_admin.dashboard_path, class: "collapse-link"
+          %li
+            = link_to t('logout'), destroy_user_session_path, method: :delete, class: "collapse-link"
+    - else
+      %li
+        = link_to t('login'), new_user_session_path
+      %li
+        = link_to t('signup'), new_user_registration_path
