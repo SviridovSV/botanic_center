@@ -25,7 +25,7 @@ gem 'kaminari'
 gem 'mini_magick'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'pg', '~> 0.18'
+gem 'pg', '~> 0.20'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.2'
 gem 'rails_admin'
@@ -64,3 +64,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 ruby '2.4.1'
+
+group :development do
+  gem 'railties', '>= 4.2'
+end
