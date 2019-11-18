@@ -21,7 +21,7 @@ workflows:
   auto_upgrade_tools:
     triggers:
       - schedule:
-          cron: "0 11 * * 1"
+          cron: "15 11 * * 1"
           filters:
             branches:
               only:
@@ -138,6 +138,8 @@ jobs:
             echo 'export BUNDLER_VERSION=$(cat Gemfile.tools.lock | tail -1 | tr -d " ")' >> $BASH_ENV
             source $BASH_ENV
             gem install bundler:$BUNDLER_VERSION
+
+      - run: sudo apt-get install cmake
 
       - run:
           name: Run Gemfile tools update in separate branch
