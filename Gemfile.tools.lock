@@ -1,17 +1,18 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    actionview (5.2.3)
-      activesupport (= 5.2.3)
+    actionview (6.0.2)
+      activesupport (= 6.0.2)
       builder (~> 3.1)
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
-      rails-html-sanitizer (~> 1.0, >= 1.0.3)
-    activesupport (5.2.3)
+      rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    activesupport (6.0.2)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+      zeitwerk (~> 2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.0)
@@ -27,7 +28,7 @@ GEM
       html_tokenizer (~> 0.0.6)
       parser (>= 2.4)
       smart_properties
-    builder (3.2.3)
+    builder (3.2.4)
     code_analyzer (0.4.8)
       sexp_processor
     codeclimate-engine-rb (0.4.1)
@@ -49,25 +50,25 @@ GEM
       smart_properties
     erubi (1.9.0)
     erubis (2.7.0)
-    faraday (0.17.0)
+    faraday (0.17.1)
       multipart-post (>= 1.2, < 3)
-    fasterer (0.8.0)
+    fasterer (0.8.1)
       colorize (~> 0.7)
       ruby_parser (>= 3.14.1)
-    gitlab (4.12.0)
+    gitlab (4.13.0)
       httparty (~> 0.14, >= 0.14.0)
       terminal-table (~> 1.5, >= 1.5.1)
     html_tokenizer (0.0.7)
-    httparty (0.17.1)
+    httparty (0.17.2)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     jaro_winkler (1.5.4)
-    json (2.2.0)
+    json (2.3.0)
     kwalify (0.7.2)
-    loofah (2.3.1)
+    loofah (2.4.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mime-types (3.3)
@@ -77,12 +78,12 @@ GEM
     minitest (5.13.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
-    nokogiri (1.10.5)
+    nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
     octokit (4.14.0)
       sawyer (~> 0.8.0, >= 0.5.3)
-    oj (3.9.2)
-    parallel (1.19.0)
+    oj (3.10.0)
+    parallel (1.19.1)
     parser (2.6.5.0)
       ast (~> 2.4.0)
     pathspec (0.2.1)
@@ -139,7 +140,7 @@ GEM
       psych (~> 3.1.0)
       rainbow (>= 2.0, < 4.0)
     require_all (2.0.0)
-    rubocop (0.76.0)
+    rubocop (0.77.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.6)
@@ -148,13 +149,13 @@ GEM
       unicode-display_width (>= 1.4.0, < 1.7)
     rubocop-performance (1.5.1)
       rubocop (>= 0.71.0)
-    rubocop-rails (2.3.2)
+    rubocop-rails (2.4.0)
       rack (>= 1.1)
       rubocop (>= 0.72.0)
     ruby-progressbar (1.10.1)
     ruby_parser (3.14.1)
       sexp_processor (~> 4.9)
-    rugged (0.27.9)
+    rugged (0.28.4.1)
     sawyer (0.8.2)
       addressable (>= 2.3.5)
       faraday (> 0.8, < 2.0)
@@ -172,6 +173,7 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
+    zeitwerk (2.2.2)
 
 PLATFORMS
   ruby
@@ -189,7 +191,7 @@ DEPENDENCIES
   pronto-yamllint
   rubocop-performance
   rubocop-rails
-  rugged (= 0.27.9)
+  rugged
 
 BUNDLED WITH
    1.17.3
